@@ -5,10 +5,12 @@ using UnityEngine;
 public class AudioBug : Bug
 {
     // reference incorrect and correct sound to be played (or just the fmod event idk how you're switching this)
+    ElevatorMusic elevatorMusic;
 
     public override void DoStart()
     {
         // Leave empty
+        elevatorMusic = GetComponent<ElevatorMusic>();
     }
 
     public override void DoUpdate()
