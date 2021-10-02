@@ -10,7 +10,7 @@ public class ElevatorMusic : MonoBehaviour
     void Start()
     {
         Music = FMODUnity.RuntimeManager.CreateInstance("event:/Elevator_Music");
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(Music, transform, GetComponent<Rigidbody>());
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(Music, transform);
         Music.start();
         Music.release();
     }
@@ -20,8 +20,8 @@ public class ElevatorMusic : MonoBehaviour
         Music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
-    public void FixAudioGlitch()
+    public void SetAudioGlitchyness(bool isFixed)
     {
-        Music.setParameterByName("Glitch", 0);
+        Music.setParameterByName("Glitch", isFixed ? 0 : 1);
     }
 }
