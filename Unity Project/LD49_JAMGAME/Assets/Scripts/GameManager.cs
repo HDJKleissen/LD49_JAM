@@ -15,13 +15,13 @@ public class GameManager : UnitySingleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void HandleBugFixOrUnfix(TwoStatePointoutable bug)
@@ -51,5 +51,15 @@ public class GameManager : UnitySingleton<GameManager>
     {
         gameUI.UpdateBugCounter(fixedBugs.Count, bugsInLevel.Count);
 
+    }
+
+    internal void DisableScanUI()
+    {
+        gameUI.DisableScanUI();
+    }
+
+    internal void UpdateScanningUI(float scanTime, float maxScanTime)
+    {
+        gameUI.UpdateScanningUI(scanTime/maxScanTime);
     }
 }
