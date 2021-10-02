@@ -6,7 +6,7 @@ public class TwoStatePointoutable : MonoBehaviour
 {
     public PointoutableCorrect Correct;
     public PointoutableIncorrect Incorrect;
-
+    public float ScanTime;
     public bool isCorrect = false;
 
     // Start is called before the first frame update

@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterController CharacterController;
 
+    // Vertical Physics
     [SerializeField] private float gravity = 9.81f;
     [SerializeField] private AnimationCurve jumpFallOff;
     [SerializeField] private float jumpMultiplier;
@@ -13,15 +14,15 @@ public class PlayerController : MonoBehaviour
 
     bool canJump;
     bool previousGrounded = false;
-    float cameraPitch = 0.0f;
     float velocityY = 0.0f;
 
+    // Camera & Movement
     [SerializeField] Camera playerCamera = null;
     [SerializeField] float mouseSensitivity;
     [SerializeField] float moveSpeed;
     [SerializeField] [Range(0.0f, 0.5f)] float moveSmoothTime;
     [SerializeField] [Range(0.0f, 0.5f)] float mouseSmoothTime;
-
+    float cameraPitch = 0.0f;
 
     Vector2 currentDir = Vector2.zero;
     Vector2 currentDirVelocity = Vector2.zero;
@@ -29,7 +30,12 @@ public class PlayerController : MonoBehaviour
     Vector2 currentMouseDelta = Vector2.zero;
     Vector2 currentMouseDeltaVelocity = Vector2.zero;
 
+    // Pointing out bugs
     [SerializeField] LayerMask pointableLayer;
+    [SerializeField] float maxScanTime;
+
+    TwoStatePointoutable scanningBug = null;
+    float scanTime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -45,12 +51,13 @@ public class PlayerController : MonoBehaviour
         HandleJumping();
         HandlePointing();
 
+
         previousGrounded = CharacterController.isGrounded;
     }
 
     private void HandlePointing()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             RaycastHit hit;
             Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
@@ -59,12 +66,69 @@ public class PlayerController : MonoBehaviour
             {
                 PointoutableIncorrect objectHit = hit.transform.GetComponent<PointoutableIncorrect>();
 
-                if(objectHit != null)
+                if (objectHit != null)
                 {
-                    objectHit.parent.ToggleObject();
+                    if (objectHit.parent == null)
+                    {
+                        Debug.LogWarning($"Object {objectHit.name} does not have a parent!");
+                    }
+                    if (scanningBug == null || scanningBug != objectHit.parent)
+                    {
+                        StartScan(objectHit.parent);
+                    }
+                    else if (scanningBug == objectHit.parent)
+                    {
+                        scanTime += Time.deltaTime;
+                    }
+                }
+                else
+                {
+                    if (scanningBug != null)
+                    {
+                        StopScan();
+                    }
+                }
+            }
+            else
+            {
+                if (scanningBug != null)
+                {
+                    StopScan();
                 }
             }
         }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            StopScan();
+        }
+
+        if (scanningBug != null)
+        {
+            GameManager.Instance.UpdateScanningUI(scanTime, maxScanTime);
+            if (scanTime >= maxScanTime)
+            {
+                scanningBug.ToggleObject();
+                StopScan();
+            }
+        }
+    }
+
+
+
+    void StartScan(TwoStatePointoutable bug)
+    {
+        scanningBug = bug;
+        scanTime = 0;
+        maxScanTime = scanningBug.ScanTime;
+    }
+
+    void StopScan()
+    {
+        scanningBug = null;
+        scanTime = 0;
+        maxScanTime = -1;
+        GameManager.Instance.DisableScanUI();
     }
 
     private void HandleJumping()
