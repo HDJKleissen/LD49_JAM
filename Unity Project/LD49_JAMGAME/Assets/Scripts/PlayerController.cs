@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     float cameraPitch = 0.0f;
     float velocityY = 0.0f;
 
-    [SerializeField] Transform playerCamera = null;
+    [SerializeField] Camera playerCamera = null;
     [SerializeField] float mouseSensitivity;
     [SerializeField] float moveSpeed;
     [SerializeField] [Range(0.0f, 0.5f)] float moveSmoothTime;
@@ -29,18 +29,46 @@ public class PlayerController : MonoBehaviour
     Vector2 currentMouseDelta = Vector2.zero;
     Vector2 currentMouseDeltaVelocity = Vector2.zero;
 
+    [SerializeField] LayerMask pointableLayer;
 
     // Start is called before the first frame update
     void Start()
     {
 
     }
-    
+
 
     void Update()
     {
         UpdateMouseLook();
         UpdateMovement();
+        HandleJumping();
+        HandlePointing();
+
+        previousGrounded = CharacterController.isGrounded;
+    }
+
+    private void HandlePointing()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, float.MaxValue, ~1 << pointableLayer))
+            {
+                PointoutableIncorrect objectHit = hit.transform.GetComponent<PointoutableIncorrect>();
+
+                if(objectHit != null)
+                {
+                    objectHit.parent.ToggleObject();
+                }
+            }
+        }
+    }
+
+    private void HandleJumping()
+    {
         if (canJump)
         {
             if (Input.GetButtonDown("Jump"))
@@ -57,8 +85,6 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(CoroutineHelper.DelaySeconds(() => canJump = false, coyoteTime));
         }
-
-        previousGrounded = CharacterController.isGrounded;
     }
 
     void UpdateMouseLook()
@@ -70,7 +96,7 @@ public class PlayerController : MonoBehaviour
         cameraPitch -= currentMouseDelta.y * mouseSensitivity;
         cameraPitch = Mathf.Clamp(cameraPitch, -90.0f, 90.0f);
 
-        playerCamera.localEulerAngles = Vector3.right * cameraPitch;
+        playerCamera.transform.localEulerAngles = Vector3.right * cameraPitch;
         transform.Rotate(Vector3.up * currentMouseDelta.x * mouseSensitivity);
     }
 
