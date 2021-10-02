@@ -2,16 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioBug : Bug
+public class AnimationBug : Bug
 {
-    [SerializeField] ElevatorMusic elevatorMusic;
-
+    public Animator animator;
     public override void DoStart()
     {
-        if (elevatorMusic == null)
-        {
-            elevatorMusic = GetComponentInChildren<ElevatorMusic>();
-        }
     }
 
     public override void DoUpdate()
@@ -20,11 +15,11 @@ public class AudioBug : Bug
 
     public override void HandleAttemptBehaviour()
     {
+        animator.SetTrigger("TryAnimation");
     }
 
     public override void HandleStartBugging()
     {
-        HandleToggle();
     }
 
     public override void HandleStartFix()
@@ -33,8 +28,9 @@ public class AudioBug : Bug
 
     public override void HandleToggle()
     {
-        // Switch audio file/change FMOD values with:
-        elevatorMusic.SetAudioGlitchyness(IsFixed);
+        if (IsBugged)
+        {
+            animator.SetBool("IsFixed", IsFixed);
+        }
     }
-
 }

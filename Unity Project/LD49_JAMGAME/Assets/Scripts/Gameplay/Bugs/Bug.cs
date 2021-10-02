@@ -3,19 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class Bug : MonoBehaviour
+public abstract class Bug : MonoBehaviour, IFixable
 {
     public Transform FixingParticlesLocation;
     public Transform FixTimeCircleLocation;
-    public float ScanTime;
+    [SerializeField] float scanTime;
 
-    public bool IsBugged = true;
-    public bool IsFixed = false, isFixing = false;
+    [SerializeField] bool isBugged = true;
+    [SerializeField] bool isFixed = false;
+
+    bool isFixing = false;
     public float MaxFixTime;
 
     GameObject particlesObject;
     FixTimeCircle fixTimeCircle;
     float fixTime = 0;
+
+    public bool IsFixed { get => isFixed; set => isFixed = value; }
+    public bool IsFixing { get => isFixing; set => isFixing = value; }
+    public bool IsBugged { get => isBugged; set => isBugged = value; }
+    public float ScanTime => scanTime;
 
     // Start is called before the first frame update
     void Start()
@@ -103,7 +110,13 @@ public abstract class Bug : MonoBehaviour
         GameManager.Instance.HandleBugToggleFix(this);
     }
 
+    public void AttemptBehaviour()
+    {
+        HandleAttemptBehaviour();
+    }
+
     public abstract void HandleToggle();
     public abstract void HandleStartFix();
     public abstract void HandleStartBugging();
+    public abstract void HandleAttemptBehaviour();
 }
