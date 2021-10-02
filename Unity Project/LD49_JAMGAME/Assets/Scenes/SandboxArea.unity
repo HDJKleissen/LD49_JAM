@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4467528, g: 0.4917059, b: 0.54852957, a: 1}
+  m_IndirectSpecularColor: {r: 0.4467526, g: 0.49170572, b: 0.5485296, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1388,6 +1388,7 @@ GameObject:
   - component: {fileID: 678930693}
   - component: {fileID: 678930692}
   - component: {fileID: 678930691}
+  - component: {fileID: 678930694}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1478,6 +1479,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 135.71, z: 0}
+--- !u!114 &678930694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678930690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acd45a6d9f922498c9b27917f2cee000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FootstepsEventPath: event:/Player_Footstep
+  JumpingEventPath: event:/Jump_Land
+  MaterialTypes:
+  - Concrete
+  - Carpet
+  RayDistance: 1.2
+  StepDistance: 2
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -10336,7 +10356,7 @@ GameObject:
   - component: {fileID: 2054526926}
   m_Layer: 0
   m_Name: Wall (12)
-  m_TagString: Untagged
+  m_TagString: Carpet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
