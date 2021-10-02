@@ -31,9 +31,10 @@ public class PlayerController : MonoBehaviour
 
     // Pointing out bugs
     [SerializeField] LayerMask pointableLayer;
+    [SerializeField] LayerMask interactableLayer;
     [SerializeField] float maxScanTime;
-
-    Bug scanningBug = null;
+    [SerializeField] float interactRange;
+    IFixable scanningBug = null;
     float scanTime = 0;
 
     // Start is called before the first frame update
@@ -50,19 +51,47 @@ public class PlayerController : MonoBehaviour
         HandleJumping();
         HandlePointing();
 
-
         previousGrounded = CharacterController.isGrounded;
     }
 
     private void HandlePointing()
     {
-        // Temporary Triggering stuff
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            RaycastHit hit;
-            Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, float.MaxValue, ~1 << pointableLayer))
+        if (Physics.Raycast(ray, out hit, interactRange, pointableLayer))
+        {
+            if (Input.GetMouseButton(0))
+            {
+                IFixable bugHit = hit.transform.GetComponent<IFixable>();
+
+                if (bugHit == null)
+                {
+                    bugHit = hit.transform.GetComponentInParent<IFixable>();
+                }
+
+                if (bugHit != null)
+                {
+                    if ((scanningBug == null || scanningBug != bugHit) && !bugHit.IsFixing && bugHit.IsBugged && !bugHit.IsFixed)
+                    {
+                        StartScan(bugHit);
+                    }
+                    else if (scanningBug == bugHit)
+                    {
+                        scanTime += Time.deltaTime;
+                    }
+                }
+                else
+                {
+                    if (scanningBug != null)
+                    {
+                        StopScan();
+                    }
+                }
+            }
+
+            // Temporary Triggering stuff
+            if (Input.GetKeyDown(KeyCode.T))
             {
                 Bug bugHit = hit.transform.GetComponent<Bug>();
 
@@ -80,52 +109,29 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-
-        if (Input.GetMouseButton(0))
+        else
         {
-            RaycastHit hit;
-            Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit, float.MaxValue, ~1 << pointableLayer))
+            if (scanningBug != null)
             {
-                Bug bugHit = hit.transform.GetComponent<Bug>();
-
-                if(bugHit == null)
-                {
-                    bugHit = hit.transform.GetComponentInParent<Bug>();
-                }
-
-                if (bugHit != null)
-                {
-                    if ((scanningBug == null || scanningBug != bugHit) && !bugHit.isFixing && bugHit.IsBugged && !bugHit.IsFixed)
-                    {
-                        StartScan(bugHit);
-                    }
-                    else if (scanningBug == bugHit)
-                    {
-                        scanTime += Time.deltaTime;
-                    }
-                }
-                else
-                {
-                    if (scanningBug != null)
-                    {
-                        StopScan();
-                    }
-                }
-            }
-            else
-            {
-                if (scanningBug != null)
-                {
-                    StopScan();
-                }
+                StopScan();
             }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             StopScan();
+        }
+
+        if (Physics.Raycast(ray, out hit, interactRange, interactableLayer))
+        {
+            if (Input.GetButtonDown("Use"))
+            {
+                Interactable interactableHit = hit.transform.GetComponent<Interactable>();
+                if (interactableHit != null)
+                {
+                    interactableHit.Interact();
+                }
+            } 
         }
 
         if (scanningBug != null)
@@ -141,8 +147,9 @@ public class PlayerController : MonoBehaviour
 
 
 
-    void StartScan(Bug bug)
+    void StartScan(IFixable bug)
     {
+        Debug.Log("Starting scan");
         scanningBug = bug;
         scanTime = 0;
         maxScanTime = scanningBug.ScanTime;
