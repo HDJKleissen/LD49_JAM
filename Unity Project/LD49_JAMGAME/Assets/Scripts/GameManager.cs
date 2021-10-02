@@ -8,23 +8,23 @@ public class GameManager : UnitySingleton<GameManager>
     public GameUI gameUI;
 
     // Object, fixed
-    public List<TwoStatePointoutable> bugsInLevel = new List<TwoStatePointoutable>();
-    public List<TwoStatePointoutable> fixedBugs = new List<TwoStatePointoutable>();
+    public List<Bug> bugsInLevel = new List<Bug>();
+    public List<Bug> fixedBugs = new List<Bug>();
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void HandleBugFixOrUnfix(TwoStatePointoutable bug)
+    public void HandleBugToggleFix(Bug bug)
     {
         if (fixedBugs.Contains(bug))
         {
@@ -37,10 +37,10 @@ public class GameManager : UnitySingleton<GameManager>
         UpdateUI();
     }
 
-    internal void RegisterBug(TwoStatePointoutable pointoutable)
+    internal void RegisterBug(Bug pointoutable)
     {
         bugsInLevel.Add(pointoutable);
-        if (pointoutable.isCorrect)
+        if (pointoutable.IsFixed)
         {
             fixedBugs.Add(pointoutable);
         }
@@ -51,5 +51,15 @@ public class GameManager : UnitySingleton<GameManager>
     {
         gameUI.UpdateBugCounter(fixedBugs.Count, bugsInLevel.Count);
 
+    }
+
+    internal void DisableScanUI()
+    {
+        gameUI.DisableScanUI();
+    }
+
+    internal void UpdateScanningUI(float scanTime, float maxScanTime)
+    {
+        gameUI.UpdateScanningUI(scanTime/maxScanTime);
     }
 }
