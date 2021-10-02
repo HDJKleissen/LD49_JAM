@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.UpdateScanningUI(scanTime, maxScanTime);
             if (scanTime >= maxScanTime)
             {
-                scanningBug.ToggleObject();
+                scanningBug.StartFix();
                 StopScan();
             }
         }

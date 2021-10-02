@@ -30,6 +30,10 @@ public class TwoSeperateObjectsBug : Bug
     {
         CorrectObject.gameObject.SetActive(IsFixed);
         IncorrectObject.gameObject.SetActive(!IsFixed);
+    }
 
+    public override void HandleStartFix()
+    {
+        IncorrectObject.StartFixing();
     }
 }

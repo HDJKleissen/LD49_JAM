@@ -34,14 +34,14 @@ public abstract class Bug : MonoBehaviour
 
             if (fixTime >= MaxFixTime)
             {
-                BaseToggleObject();
+                ToggleObject();
             }
         }
     }
 
     public abstract void DoUpdate();
     
-    public void ToggleObject()
+    public void StartFix()
     {
         if (MaxFixTime > 0)
         {
@@ -49,14 +49,15 @@ public abstract class Bug : MonoBehaviour
             isFixing = true;
             FixingParticlesObject.SetActive(true);
             FixingTimeImage.gameObject.SetActive(true);
+            HandleStartFix();
         }
         else
         {
-            BaseToggleObject();
+            ToggleObject();
         }
     }
 
-    public void BaseToggleObject()
+    public void ToggleObject()
     {
         if (FixingParticlesObject != null)
         {
@@ -74,4 +75,5 @@ public abstract class Bug : MonoBehaviour
     }
 
     public abstract void HandleToggle();
+    public abstract void HandleStartFix();
 }
