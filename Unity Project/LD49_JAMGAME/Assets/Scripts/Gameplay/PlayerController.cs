@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
 
     // Camera & Movement
     [SerializeField] Camera playerCamera = null;
-    [SerializeField] float mouseSensitivity;
     [SerializeField] float moveSpeed;
     [SerializeField] [Range(0.0f, 0.5f)] float moveSmoothTime;
     [SerializeField] [Range(0.0f, 0.5f)] float mouseSmoothTime;
@@ -34,7 +33,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask pointableLayer;
     [SerializeField] float maxScanTime;
 
-    TwoStatePointoutable scanningBug = null;
+    Bug scanningBug = null;
     float scanTime = 0;
 
     // Start is called before the first frame update
@@ -57,6 +56,31 @@ public class PlayerController : MonoBehaviour
 
     private void HandlePointing()
     {
+        // Temporary Triggering stuff
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            RaycastHit hit;
+            Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, float.MaxValue, ~1 << pointableLayer))
+            {
+                Bug bugHit = hit.transform.GetComponent<Bug>();
+
+                if (bugHit == null)
+                {
+                    bugHit = hit.transform.GetComponentInParent<Bug>();
+                }
+
+                if (bugHit != null)
+                {
+                    if (!bugHit.IsBugged)
+                    {
+                        bugHit.StartBugging();
+                    }
+                }
+            }
+        }
+
         if (Input.GetMouseButton(0))
         {
             RaycastHit hit;
@@ -64,19 +88,20 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, float.MaxValue, ~1 << pointableLayer))
             {
-                PointoutableIncorrect objectHit = hit.transform.GetComponent<PointoutableIncorrect>();
+                Bug bugHit = hit.transform.GetComponent<Bug>();
 
-                if (objectHit != null)
+                if(bugHit == null)
                 {
-                    if (objectHit.parent == null)
+                    bugHit = hit.transform.GetComponentInParent<Bug>();
+                }
+
+                if (bugHit != null)
+                {
+                    if ((scanningBug == null || scanningBug != bugHit) && !bugHit.isFixing && bugHit.IsBugged && !bugHit.IsFixed)
                     {
-                        Debug.LogWarning($"Object {objectHit.name} does not have a parent!");
+                        StartScan(bugHit);
                     }
-                    if (scanningBug == null || scanningBug != objectHit.parent)
-                    {
-                        StartScan(objectHit.parent);
-                    }
-                    else if (scanningBug == objectHit.parent)
+                    else if (scanningBug == bugHit)
                     {
                         scanTime += Time.deltaTime;
                     }
@@ -108,7 +133,7 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.UpdateScanningUI(scanTime, maxScanTime);
             if (scanTime >= maxScanTime)
             {
-                scanningBug.ToggleObject();
+                scanningBug.StartFix();
                 StopScan();
             }
         }
@@ -116,7 +141,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-    void StartScan(TwoStatePointoutable bug)
+    void StartScan(Bug bug)
     {
         scanningBug = bug;
         scanTime = 0;
@@ -157,11 +182,11 @@ public class PlayerController : MonoBehaviour
 
         currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetMouseDelta, ref currentMouseDeltaVelocity, mouseSmoothTime);
 
-        cameraPitch -= currentMouseDelta.y * mouseSensitivity;
+        cameraPitch -= currentMouseDelta.y * GameManager.MouseSensitivity;
         cameraPitch = Mathf.Clamp(cameraPitch, -90.0f, 90.0f);
 
         playerCamera.transform.localEulerAngles = Vector3.right * cameraPitch;
-        transform.Rotate(Vector3.up * currentMouseDelta.x * mouseSensitivity);
+        transform.Rotate(Vector3.up * currentMouseDelta.x * GameManager.MouseSensitivity);
     }
 
     void UpdateMovement()
@@ -176,7 +201,13 @@ public class PlayerController : MonoBehaviour
 
         velocityY += gravity * Time.deltaTime;
 
-        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * moveSpeed + Vector3.up * velocityY;
+        float moveSpeedWithSprinting = moveSpeed;
+        if (Input.GetButton("Sprint"))
+        {
+            moveSpeedWithSprinting *= 2;
+        }
+
+        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * moveSpeedWithSprinting + Vector3.up * velocityY;
 
         CharacterController.Move(velocity * Time.deltaTime);
     }

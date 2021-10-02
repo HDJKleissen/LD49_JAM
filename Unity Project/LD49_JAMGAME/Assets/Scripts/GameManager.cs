@@ -7,11 +7,22 @@ public class GameManager : UnitySingleton<GameManager>
 {
     public GameUI gameUI;
 
-    // Object, fixed
-    public List<TwoStatePointoutable> bugsInLevel = new List<TwoStatePointoutable>();
-    public List<TwoStatePointoutable> fixedBugs = new List<TwoStatePointoutable>();
+    public List<Bug> bugsInLevel = new List<Bug>();
+    public List<Bug> fixedBugs = new List<Bug>();
 
-
+    static float _mouseSensitivity = -1f;
+    public static float MouseSensitivity {
+        get {
+            if(_mouseSensitivity < 0)
+            {
+                _mouseSensitivity = PlayerPrefs.GetFloat(OptionsMenu.MOUSE_SENSITIVITY);
+            }
+            return _mouseSensitivity;
+        }
+        set {
+            _mouseSensitivity = value;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +32,9 @@ public class GameManager : UnitySingleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-
     }
 
-    public void HandleBugFixOrUnfix(TwoStatePointoutable bug)
+    public void HandleBugToggleFix(Bug bug)
     {
         if (fixedBugs.Contains(bug))
         {
@@ -37,10 +47,10 @@ public class GameManager : UnitySingleton<GameManager>
         UpdateUI();
     }
 
-    internal void RegisterBug(TwoStatePointoutable pointoutable)
+    internal void RegisterBug(Bug pointoutable)
     {
         bugsInLevel.Add(pointoutable);
-        if (pointoutable.isCorrect)
+        if (pointoutable.IsFixed)
         {
             fixedBugs.Add(pointoutable);
         }
