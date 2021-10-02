@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canJump)
         {
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButton("Jump"))
             {
                 canJump = false;
                 StartCoroutine(JumpEvent());
