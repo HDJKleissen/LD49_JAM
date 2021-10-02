@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask pointableLayer;
     [SerializeField] float maxScanTime;
 
-    TwoSeperateObjectsBug scanningBug = null;
+    Bug scanningBug = null;
     float scanTime = 0;
 
     // Start is called before the first frame update
@@ -63,19 +63,19 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, float.MaxValue, ~1 << pointableLayer))
             {
-                TwoSeperateObjectsBugIncorrect objectHit = hit.transform.GetComponent<TwoSeperateObjectsBugIncorrect>();
+                Bug objectHit = hit.transform.GetComponent<Bug>();
 
                 if (objectHit != null)
                 {
-                    if (objectHit.parent == null)
+                    if (objectHit == null)
                     {
                         Debug.LogWarning($"Object {objectHit.name} does not have a parent!");
                     }
-                    if ((scanningBug == null || scanningBug != objectHit.parent) && !objectHit.parent.isFixing)
+                    if ((scanningBug == null || scanningBug != objectHit) && !objectHit.isFixing)
                     {
-                        StartScan(objectHit.parent);
+                        StartScan(objectHit);
                     }
-                    else if (scanningBug == objectHit.parent)
+                    else if (scanningBug == objectHit)
                     {
                         scanTime += Time.deltaTime;
                     }
@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-    void StartScan(TwoSeperateObjectsBug bug)
+    void StartScan(Bug bug)
     {
         scanningBug = bug;
         scanTime = 0;
