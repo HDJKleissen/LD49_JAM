@@ -201,7 +201,13 @@ public class PlayerController : MonoBehaviour
 
         velocityY += gravity * Time.deltaTime;
 
-        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * moveSpeed + Vector3.up * velocityY;
+        float moveSpeedWithSprinting = moveSpeed;
+        if (Input.GetButton("Sprint"))
+        {
+            moveSpeedWithSprinting *= 2;
+        }
+
+        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * moveSpeedWithSprinting + Vector3.up * velocityY;
 
         CharacterController.Move(velocity * Time.deltaTime);
     }
