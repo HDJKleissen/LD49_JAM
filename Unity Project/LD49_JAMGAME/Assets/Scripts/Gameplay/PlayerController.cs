@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
                     {
                         Debug.LogWarning($"Object {objectHit.name} does not have a parent!");
                     }
-                    if (scanningBug == null || scanningBug != objectHit.parent)
+                    if ((scanningBug == null || scanningBug != objectHit.parent) && !objectHit.parent.isFixing)
                     {
                         StartScan(objectHit.parent);
                     }
