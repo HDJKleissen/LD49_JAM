@@ -7,11 +7,22 @@ public class GameManager : UnitySingleton<GameManager>
 {
     public GameUI gameUI;
 
-    // Object, fixed
     public List<Bug> bugsInLevel = new List<Bug>();
     public List<Bug> fixedBugs = new List<Bug>();
 
-
+    static float _mouseSensitivity = -1f;
+    public static float MouseSensitivity {
+        get {
+            if(_mouseSensitivity < 0)
+            {
+                _mouseSensitivity = PlayerPrefs.GetFloat(OptionsMenu.MOUSE_SENSITIVITY);
+            }
+            return _mouseSensitivity;
+        }
+        set {
+            _mouseSensitivity = value;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
