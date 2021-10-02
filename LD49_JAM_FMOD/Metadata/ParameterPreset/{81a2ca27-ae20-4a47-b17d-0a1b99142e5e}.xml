@@ -22,6 +22,12 @@
 			<value>Concrete</value>
 			<value>Carpet</value>
 		</property>
+<<<<<<< HEAD
+=======
+		<property name="isHeld">
+			<value>true</value>
+		</property>
+>>>>>>> 41cd156ac8b8bc109ff711d5fa3fe8a3a1b9ce7b
 		<property name="initialValue">
 			<value>0</value>
 		</property>
