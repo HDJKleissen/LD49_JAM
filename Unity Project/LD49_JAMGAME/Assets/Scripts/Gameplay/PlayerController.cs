@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask pointableLayer;
     [SerializeField] float maxScanTime;
 
-    TwoSeperateObjectsBug scanningBug = null;
+    Bug scanningBug = null;
     float scanTime = 0;
 
     // Start is called before the first frame update
@@ -56,6 +56,31 @@ public class PlayerController : MonoBehaviour
 
     private void HandlePointing()
     {
+        // Temporary Triggering stuff
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            RaycastHit hit;
+            Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, float.MaxValue, ~1 << pointableLayer))
+            {
+                Bug bugHit = hit.transform.GetComponent<Bug>();
+
+                if (bugHit == null)
+                {
+                    bugHit = hit.transform.GetComponentInParent<Bug>();
+                }
+
+                if (bugHit != null)
+                {
+                    if (!bugHit.IsBugged)
+                    {
+                        bugHit.StartBugging();
+                    }
+                }
+            }
+        }
+
         if (Input.GetMouseButton(0))
         {
             RaycastHit hit;
@@ -63,19 +88,20 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, float.MaxValue, ~1 << pointableLayer))
             {
-                TwoSeperateObjectsBugIncorrect objectHit = hit.transform.GetComponent<TwoSeperateObjectsBugIncorrect>();
+                Bug bugHit = hit.transform.GetComponent<Bug>();
 
-                if (objectHit != null)
+                if(bugHit == null)
                 {
-                    if (objectHit.parent == null)
+                    bugHit = hit.transform.GetComponentInParent<Bug>();
+                }
+
+                if (bugHit != null)
+                {
+                    if ((scanningBug == null || scanningBug != bugHit) && !bugHit.isFixing && bugHit.IsBugged && !bugHit.IsFixed)
                     {
-                        Debug.LogWarning($"Object {objectHit.name} does not have a parent!");
+                        StartScan(bugHit);
                     }
-                    if ((scanningBug == null || scanningBug != objectHit.parent) && !objectHit.parent.isFixing)
-                    {
-                        StartScan(objectHit.parent);
-                    }
-                    else if (scanningBug == objectHit.parent)
+                    else if (scanningBug == bugHit)
                     {
                         scanTime += Time.deltaTime;
                     }
@@ -115,7 +141,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-    void StartScan(TwoSeperateObjectsBug bug)
+    void StartScan(Bug bug)
     {
         scanningBug = bug;
         scanTime = 0;
