@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask pointableLayer;
     [SerializeField] float maxScanTime;
 
-    TwoStatePointoutable scanningBug = null;
+    TwoSeperateObjectsBug scanningBug = null;
     float scanTime = 0;
 
     // Start is called before the first frame update
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, float.MaxValue, ~1 << pointableLayer))
             {
-                PointoutableIncorrect objectHit = hit.transform.GetComponent<PointoutableIncorrect>();
+                TwoSeperateObjectsBugIncorrect objectHit = hit.transform.GetComponent<TwoSeperateObjectsBugIncorrect>();
 
                 if (objectHit != null)
                 {
@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-    void StartScan(TwoStatePointoutable bug)
+    void StartScan(TwoSeperateObjectsBug bug)
     {
         scanningBug = bug;
         scanTime = 0;
