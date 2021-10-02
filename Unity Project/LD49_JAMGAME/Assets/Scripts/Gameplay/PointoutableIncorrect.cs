@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PointoutableIncorrect : MonoBehaviour
 {
-    public Pointoutable parent;
+    public TwoStatePointoutable parent;
     // Start is called before the first frame update
     void Start()
     {
         if (parent == null)
         {
-            parent = GetComponentInParent<Pointoutable>();
+            parent = GetComponentInParent<TwoStatePointoutable>();
         }
     }
 
