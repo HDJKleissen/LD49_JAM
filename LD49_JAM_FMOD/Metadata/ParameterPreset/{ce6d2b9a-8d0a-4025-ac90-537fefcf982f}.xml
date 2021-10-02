@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{ce6d2b9a-8d0a-4025-ac90-537fefcf982f}">
+		<property name="name">
+			<value>Glitch</value>
+		</property>
+		<relationship name="folder">
+			<destination>{eef70ccc-793f-4dea-9a88-56d13623cbed}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{c4e1629e-855d-4095-b57f-03ad57a93138}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{c4e1629e-855d-4095-b57f-03ad57a93138}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="initialValue">
+			<value>1</value>
+		</property>
+	</object>
+</objects>
