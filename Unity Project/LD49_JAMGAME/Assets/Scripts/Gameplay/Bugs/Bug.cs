@@ -10,6 +10,7 @@ public abstract class Bug : MonoBehaviour
 
     public float ScanTime;
 
+    public bool IsBugged = true;
     public bool IsFixed = false, isFixing = false;
     public float MaxFixTime;
     float fixTime = 0;
@@ -18,7 +19,10 @@ public abstract class Bug : MonoBehaviour
     void Start()
     {
         DoStart();
-        GameManager.Instance.RegisterBug(this);
+        if (IsBugged)
+        {
+            GameManager.Instance.RegisterBug(this);
+        }
         HandleToggle();
     }
 
@@ -27,6 +31,7 @@ public abstract class Bug : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DoUpdate();
         if (isFixing)
         {
             fixTime += Time.deltaTime;
@@ -41,6 +46,16 @@ public abstract class Bug : MonoBehaviour
 
     public abstract void DoUpdate();
     
+    public void StartBugging()
+    {
+        if (!IsBugged)
+        {
+            IsBugged = true;
+            HandleStartBugging();
+            GameManager.Instance.RegisterBug(this);
+        }
+    }
+
     public void StartFix()
     {
         if (MaxFixTime > 0)
@@ -70,10 +85,12 @@ public abstract class Bug : MonoBehaviour
 
         isFixing = false;
         IsFixed = !IsFixed;
+        IsBugged = IsFixed;
         HandleToggle();
         GameManager.Instance.HandleBugToggleFix(this);
     }
 
     public abstract void HandleToggle();
     public abstract void HandleStartFix();
+    public abstract void HandleStartBugging();
 }

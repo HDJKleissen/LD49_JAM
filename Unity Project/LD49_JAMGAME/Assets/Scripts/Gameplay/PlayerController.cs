@@ -56,6 +56,31 @@ public class PlayerController : MonoBehaviour
 
     private void HandlePointing()
     {
+        // Temporary Triggering stuff
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            RaycastHit hit;
+            Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, float.MaxValue, ~1 << pointableLayer))
+            {
+                Bug bugHit = hit.transform.GetComponent<Bug>();
+
+                if (bugHit == null)
+                {
+                    bugHit = hit.transform.GetComponentInParent<Bug>();
+                }
+
+                if (bugHit != null)
+                {
+                    if (!bugHit.IsBugged)
+                    {
+                        bugHit.StartBugging();
+                    }
+                }
+            }
+        }
+
         if (Input.GetMouseButton(0))
         {
             RaycastHit hit;
@@ -63,19 +88,20 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, float.MaxValue, ~1 << pointableLayer))
             {
-                Bug objectHit = hit.transform.GetComponent<Bug>();
+                Bug bugHit = hit.transform.GetComponent<Bug>();
 
-                if (objectHit != null)
+                if(bugHit == null)
                 {
-                    if (objectHit == null)
+                    bugHit = hit.transform.GetComponentInParent<Bug>();
+                }
+
+                if (bugHit != null)
+                {
+                    if ((scanningBug == null || scanningBug != bugHit) && !bugHit.isFixing && bugHit.IsBugged && !bugHit.IsFixed)
                     {
-                        Debug.LogWarning($"Object {objectHit.name} does not have a parent!");
+                        StartScan(bugHit);
                     }
-                    if ((scanningBug == null || scanningBug != objectHit) && !objectHit.isFixing)
-                    {
-                        StartScan(objectHit);
-                    }
-                    else if (scanningBug == objectHit)
+                    else if (scanningBug == bugHit)
                     {
                         scanTime += Time.deltaTime;
                     }

@@ -16,6 +16,11 @@ public class AudioBug : Bug
         // Distance attenuation, etc here
     }
 
+    public override void HandleStartBugging()
+    {
+        HandleToggle();
+    }
+
     public override void HandleStartFix()
     {
         // Leave empty, or stop sound here if you want

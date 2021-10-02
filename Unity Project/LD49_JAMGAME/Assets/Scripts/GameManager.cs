@@ -32,7 +32,6 @@ public class GameManager : UnitySingleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public void HandleBugToggleFix(Bug bug)

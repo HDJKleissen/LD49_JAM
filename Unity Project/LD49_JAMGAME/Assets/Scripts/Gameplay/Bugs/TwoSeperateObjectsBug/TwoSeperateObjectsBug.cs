@@ -28,12 +28,17 @@ public class TwoSeperateObjectsBug : Bug
 
     public override void HandleToggle()
     {
-        CorrectObject.gameObject.SetActive(IsFixed);
-        IncorrectObject.gameObject.SetActive(!IsFixed);
+        CorrectObject.gameObject.SetActive(!IsBugged || IsFixed);
+        IncorrectObject.gameObject.SetActive(IsBugged && !IsFixed);
     }
 
     public override void HandleStartFix()
     {
         IncorrectObject.StartFixing();
+    }
+
+    public override void HandleStartBugging()
+    {
+        HandleToggle();
     }
 }
