@@ -5,44 +5,102 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public CharacterController CharacterController;
-    public Camera Camera;
 
-    public float HorizontalRotateSpeed= 1f;
-    public float VerticalRotateSpeed = 1f;
-    public float MoveSpeed;
-    public float Gravity = 9.81f;
+    [SerializeField] private float gravity = 9.81f;
+    [SerializeField] private AnimationCurve jumpFallOff;
+    [SerializeField] private float jumpMultiplier;
+    [SerializeField] private float coyoteTime;
 
-    float xRotation, yRotation;
-    float ySpeed = 0;
+    bool canJump;
+    bool previousGrounded = false;
+    float cameraPitch = 0.0f;
+    float velocityY = 0.0f;
+
+    [SerializeField] Transform playerCamera = null;
+    [SerializeField] float mouseSensitivity;
+    [SerializeField] float moveSpeed;
+    [SerializeField] [Range(0.0f, 0.5f)] float moveSmoothTime;
+    [SerializeField] [Range(0.0f, 0.5f)] float mouseSmoothTime;
+
+
+    Vector2 currentDir = Vector2.zero;
+    Vector2 currentDirVelocity = Vector2.zero;
+
+    Vector2 currentMouseDelta = Vector2.zero;
+    Vector2 currentMouseDeltaVelocity = Vector2.zero;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
 
-    // Update is called once per frame
+    }
+    
+
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * HorizontalRotateSpeed;
-        float mouseY = Input.GetAxis("Mouse Y") * VerticalRotateSpeed;
+        UpdateMouseLook();
+        UpdateMovement();
+        if (canJump)
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                canJump = false;
+                StartCoroutine(JumpEvent());
+            }
+        }
+        if (CharacterController.isGrounded && !canJump)
+        {
+            canJump = true;
+        }
+        if (!CharacterController.isGrounded && previousGrounded)
+        {
+            StartCoroutine(CoroutineHelper.DelaySeconds(() => canJump = false, coyoteTime));
+        }
 
+        previousGrounded = CharacterController.isGrounded;
+    }
 
-        transform.eulerAngles += new Vector3(0, mouseX, 0);
-        Camera.transform.eulerAngles -= new Vector3(mouseY, 0, 0);
+    void UpdateMouseLook()
+    {
+        Vector2 targetMouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
-        float horizontal = Input.GetAxis("Horizontal") * MoveSpeed;
-        float vertical = Input.GetAxis("Vertical") * MoveSpeed;
-        CharacterController.Move((transform.right * horizontal + transform.forward * vertical) * Time.deltaTime);
-        
-        // Gravity
+        currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetMouseDelta, ref currentMouseDeltaVelocity, mouseSmoothTime);
+
+        cameraPitch -= currentMouseDelta.y * mouseSensitivity;
+        cameraPitch = Mathf.Clamp(cameraPitch, -90.0f, 90.0f);
+
+        playerCamera.localEulerAngles = Vector3.right * cameraPitch;
+        transform.Rotate(Vector3.up * currentMouseDelta.x * mouseSensitivity);
+    }
+
+    void UpdateMovement()
+    {
+        Vector2 targetDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        targetDir.Normalize();
+
+        currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);
+
         if (CharacterController.isGrounded)
+            velocityY = -0.1f;
+
+        velocityY += gravity * Time.deltaTime;
+
+        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * moveSpeed + Vector3.up * velocityY;
+
+        CharacterController.Move(velocity * Time.deltaTime);
+    }
+    private IEnumerator JumpEvent()
+    {
+        float timeInAir = 0.0f;
+        do
         {
-            ySpeed = 0;
-        }
-        else
-        {
-            ySpeed -= Gravity * Time.deltaTime;
-            CharacterController.Move(new Vector3(0, ySpeed, 0));
-        }
+            float jumpForce = jumpFallOff.Evaluate(timeInAir);
+            CharacterController.Move(Vector3.up * jumpForce * jumpMultiplier * Time.deltaTime);
+            timeInAir += Time.deltaTime;
+            yield return null;
+        } while (!CharacterController.isGrounded && CharacterController.collisionFlags != CollisionFlags.Above);
+
+        canJump = true;
     }
 }
