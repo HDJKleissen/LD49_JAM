@@ -41,4 +41,8 @@ public class TwoSeperateObjectsBug : Bug
     {
         HandleToggle();
     }
+
+    public override void HandleAttemptBehaviour()
+    {
+    }
 }
