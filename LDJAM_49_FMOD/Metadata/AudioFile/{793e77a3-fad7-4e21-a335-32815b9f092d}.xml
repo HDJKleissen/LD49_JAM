@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{793e77a3-fad7-4e21-a335-32815b9f092d}">
+		<property name="assetPath">
+			<value>Elevator Music/Elevator Music Glitch Loop 1.0.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>27.825916666666668</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{76d4bcf3-3b71-435e-9fbf-dd94ff585a15}</destination>
+		</relationship>
+	</object>
+</objects>
