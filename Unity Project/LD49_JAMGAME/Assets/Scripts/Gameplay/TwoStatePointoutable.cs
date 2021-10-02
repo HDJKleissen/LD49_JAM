@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pointoutable : MonoBehaviour
+public class TwoStatePointoutable : MonoBehaviour
 {
     public PointoutableCorrect Correct;
     public PointoutableIncorrect Incorrect;
@@ -21,6 +21,8 @@ public class Pointoutable : MonoBehaviour
             Incorrect = GetComponentInChildren<PointoutableIncorrect>();
         }
         SetObjectsActive();
+
+        GameManager.Instance.RegisterBug(this);
     }
 
     // Update is called once per frame
@@ -33,6 +35,7 @@ public class Pointoutable : MonoBehaviour
     {
         isCorrect = !isCorrect;
         SetObjectsActive();
+        GameManager.Instance.HandleBugFixOrUnfix(this);
     }
 
     void SetObjectsActive()

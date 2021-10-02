@@ -124,9 +124,8 @@ public class PlayerController : MonoBehaviour
             float jumpForce = jumpFallOff.Evaluate(timeInAir);
             CharacterController.Move(Vector3.up * jumpForce * jumpMultiplier * Time.deltaTime);
             timeInAir += Time.deltaTime;
+
             yield return null;
         } while (!CharacterController.isGrounded && CharacterController.collisionFlags != CollisionFlags.Above);
-
-        canJump = true;
     }
 }
