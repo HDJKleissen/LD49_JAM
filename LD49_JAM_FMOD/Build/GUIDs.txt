@@ -1,0 +1,14 @@
+{1508f14c-eb44-4434-a8fa-8b2185785a58} bank:/Master
+{8d15d198-9a3f-0876-2eb3-01df748b5cc0} bank:/Master.strings
+{db301c1d-826d-4584-bb9b-41806d1c8049} bank:/Music
+{41622932-c5c4-4c8e-9dac-9a8a8f4c5281} bank:/SFX
+{3446c9e9-a534-4c00-a756-3d722504b305} bus:/
+{4f839c8d-f9c3-4e8c-807a-19905b3a6e7b} bus:/Reverb
+{dbac3fcd-a96a-4845-9a45-42871ff8b101} event:/Ambience
+{a9fd8a73-9d2f-4435-af99-7da637b05dda} event:/Elevator_Music
+{6203e2ff-ef34-4102-8022-f99d323d078d} event:/Jump_Land
+{2c49c4e5-ee76-49d3-b5e0-bcf6fd3cf37a} event:/Lobby_Bell
+{2349c99b-ca89-4a45-87a3-e4aaf1d3c4f8} event:/Player_Footstep
+{c4e1629e-855d-4095-b57f-03ad57a93138} parameter:/Glitch
+{26ef00b4-5f00-4678-978b-2739b94c91c2} parameter:/JumpOrLand
+{89fe59de-10b9-459c-8df2-93662e92642a} parameter:/Material
