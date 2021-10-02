@@ -5,14 +5,16 @@ using UnityEngine.UI;
 
 public abstract class Bug : MonoBehaviour
 {
-    public GameObject FixingParticlesObject;
-    public Image FixingTimeImage;
-
+    public Transform FixingParticlesLocation;
+    public Transform FixTimeCircleLocation;
     public float ScanTime;
 
     public bool IsBugged = true;
     public bool IsFixed = false, isFixing = false;
     public float MaxFixTime;
+
+    GameObject particlesObject;
+    FixTimeCircle fixTimeCircle;
     float fixTime = 0;
 
     // Start is called before the first frame update
@@ -23,6 +25,17 @@ public abstract class Bug : MonoBehaviour
         {
             GameManager.Instance.RegisterBug(this);
         }
+        if (FixingParticlesLocation == null)
+        {
+            FixingParticlesLocation = transform;
+        }
+        if (FixTimeCircleLocation == null)
+        {
+            FixTimeCircleLocation = new GameObject().transform;
+            FixTimeCircleLocation.parent = transform;
+            FixTimeCircleLocation.localPosition = new Vector3(0, 3, 0);
+        }
+
         HandleToggle();
     }
 
@@ -35,11 +48,11 @@ public abstract class Bug : MonoBehaviour
         if (isFixing)
         {
             fixTime += Time.deltaTime;
-            FixingTimeImage.fillAmount = fixTime / MaxFixTime;
+            fixTimeCircle.UpdateCircleFillAmount(fixTime / MaxFixTime);
 
             if (fixTime >= MaxFixTime)
             {
-                ToggleObject();
+                FixObject();
             }
         }
     }
@@ -62,29 +75,29 @@ public abstract class Bug : MonoBehaviour
         {
             fixTime = 0;
             isFixing = true;
-            FixingParticlesObject.SetActive(true);
-            FixingTimeImage.gameObject.SetActive(true);
+            particlesObject = Instantiate(BugPrefabs.Instance.FixParticlesPrefab, FixingParticlesLocation);
+            fixTimeCircle = Instantiate(BugPrefabs.Instance.FixTimeCirclePrefab, FixTimeCircleLocation).GetComponent<FixTimeCircle>();
             HandleStartFix();
         }
         else
         {
-            ToggleObject();
+            FixObject();
         }
     }
 
-    public void ToggleObject()
+    public void FixObject()
     {
-        if (FixingParticlesObject != null)
+        if (particlesObject != null)
         {
-            FixingParticlesObject.SetActive(false);
+            Destroy(particlesObject);
         }
-        if (FixingTimeImage != null)
+        if (fixTimeCircle != null)
         {
-            FixingTimeImage.gameObject.SetActive(false);
+            Destroy(fixTimeCircle.gameObject);
         }
 
         isFixing = false;
-        IsFixed = !IsFixed;
+        IsFixed = true;
         IsBugged = IsFixed;
         HandleToggle();
         GameManager.Instance.HandleBugToggleFix(this);
