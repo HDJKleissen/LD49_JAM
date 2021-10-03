@@ -84,8 +84,12 @@ public class GameManager : UnitySingleton<GameManager>
         gameUI.AddFailureImage();
         if (bugFixFailures >= MaxBugFixFailures)
         {
-            // You lose!
             Debug.Log("YOU LOSE");
         }
+    }
+
+    internal void ShowHint(string text, float showTime)
+    {
+        gameUI.ShowHint(text, showTime);
     }
 }

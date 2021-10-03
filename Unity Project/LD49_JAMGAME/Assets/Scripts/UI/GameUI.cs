@@ -10,6 +10,7 @@ public class GameUI : MonoBehaviour
     public TextMeshProUGUI BugCounterText;
     public Image ScanCircleImage;
     public FailureCounter failureCounter;
+    public HintsOverlay hintsOverlay;
 
     // Start is called before the first frame update
     void Start()
@@ -51,5 +52,10 @@ public class GameUI : MonoBehaviour
     internal void AddFailureImage()
     {
         failureCounter.AddFailure();
+    }
+
+    internal void ShowHint(string text, float showTime)
+    {
+        hintsOverlay.SetHint(text, showTime);
     }
 }
