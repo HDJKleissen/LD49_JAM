@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PAAnnouncements : MonoBehaviour
 {
-    [SerializeField] float TimeBeforeFirstAnnouncement = 3f;
-    [SerializeField] float ShortestTimeBetweenAnnouncements = 10f;
-    [SerializeField] float LongestTimeBetweenAnnouncements = 15f;
+    [SerializeField] float TimeBeforeFirstAnnouncement;
+    [SerializeField] float ShortestTimeBetweenAnnouncements;
+    [SerializeField] float LongestTimeBetweenAnnouncements;
     public bool isBug;
     FMOD.Studio.EventInstance NormalLine;
     FMOD.Studio.EventInstance BugLine;
@@ -27,17 +27,23 @@ public class PAAnnouncements : MonoBehaviour
         {
             BugLine.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
             BugLine.start();
-            BugLine.release();
+
             //if we don't need to update location could use FMODUnity.RuntimeManager.PlayOneShotAttached("event:/PA_Bug", gameObject);
         }
         else
         {
             NormalLine.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
             NormalLine.start();
-            NormalLine.release();
+
             //if we don't need to update location could use FMODUnity.RuntimeManager.PlayOneShotAttached("event:/PA", gameObject);
         }
 
         Invoke("PlayPALine", Random.Range(ShortestTimeBetweenAnnouncements, LongestTimeBetweenAnnouncements));
+    }
+
+    void OnDestroy()
+    {
+        BugLine.release();
+        NormalLine.release();
     }
 }
