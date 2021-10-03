@@ -7,24 +7,21 @@ using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
-    public TextMeshProUGUI MusicText, SFXText, MouseSensitivityText;
-    public Slider MusicSlider, SFXSlider, MouseSensitivitySlider;
+    public TextMeshProUGUI MusicText, MouseSensitivityText;
+    public Slider MusicSlider, MouseSensitivitySlider;
     public static string MUSIC_LEVEL = "MusicLevel";
-    public static string SFX_LEVEL = "SFXLevel";
     public static string MOUSE_SENSITIVITY = "MouseSensitivity";
 
     // Start is called before the first frame update
     void Start()
     {
         float MusicSliderValue = PlayerPrefs.GetFloat(MUSIC_LEVEL, 0.5f);
-        float SFXSliderValue = PlayerPrefs.GetFloat(SFX_LEVEL, 0.5f);
         float MouseSensitivitySliderValue = PlayerPrefs.GetFloat(MOUSE_SENSITIVITY, 1);
 
         MusicSlider.value = MusicSliderValue;
-        SFXSlider.value = SFXSliderValue;
+        
         MouseSensitivitySlider.value = MouseSensitivitySliderValue;
         OnMusicSliderValueChange();
-        OnSFXSliderValueChange();
         OnMouseSensitivitySliderValueChange();
     }
 
@@ -40,16 +37,7 @@ public class OptionsMenu : MonoBehaviour
 
         // Change FMOD values here?
         PlayerPrefs.SetFloat(MUSIC_LEVEL, value);
-        MusicText.SetText($"Music: {value}");
-    }
-
-    public void OnSFXSliderValueChange()
-    {
-        float value = (float)Math.Round(SFXSlider.value, 2);
-
-        // Change FMOD values here?
-        PlayerPrefs.SetFloat(SFX_LEVEL, value);
-        SFXText.SetText($"Sound Effects: {value}");
+        MusicText.SetText($"Sound Level: {value}");
     }
 
     public void OnMouseSensitivitySliderValueChange()
