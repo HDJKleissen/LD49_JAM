@@ -58,15 +58,17 @@ public class PlayerController : MonoBehaviour
     private void HandlePointing()
     {
         bool clearHighlight = true;
-        RaycastHit hit;
+        RaycastHit hitInteractable, hitBug, hitOther;
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit, interactRange, pointableLayer))
+        bool rayHitInteractable = Physics.Raycast(ray, out hitInteractable, interactRange, interactableLayer);
+        bool rayHitBug = Physics.Raycast(ray, out hitBug, interactRange, pointableLayer);
+        bool rayHitOther = Physics.Raycast(ray, out hitOther, interactRange);
+        if (rayHitBug)
         {
-            IHighlightable highlightAbleObject = hit.transform.GetComponent<IHighlightable>();
+            IHighlightable highlightAbleObject = hitBug.transform.GetComponent<IHighlightable>();
             if(highlightAbleObject == null)
             {
-                highlightAbleObject = hit.transform.GetComponentInParent<IHighlightable>();
+                highlightAbleObject = hitBug.transform.GetComponentInParent<IHighlightable>();
             }
             if (highlightAbleObject != null)
             {
@@ -80,13 +82,13 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0))
             {
-                IFixable bugHit = hit.transform.GetComponent<IFixable>();
+                IFixable bugHit = hitBug.transform.GetComponent<IFixable>();
 
                 if (bugHit == null)
                 {
-                    bugHit = hit.transform.GetComponentInParent<IFixable>();
+                    bugHit = hitBug.transform.GetComponentInParent<IFixable>();
                 }
 
                 if (bugHit != null)
@@ -95,28 +97,28 @@ public class PlayerController : MonoBehaviour
                     {
                         StartScan(bugHit);
                     }
-                    else if (scanningBug == bugHit)
-                    {
-                        scanTime += Time.deltaTime;
-                    }
                 }
                 else
                 {
-                    if (scanningBug != null)
-                    {
-                        StopScan();
-                    }
+                    Debug.LogWarning($"{hitBug.transform.name} is on the Pointoutables layer but does not have a Bug component and neither does its parent");
+                }
+            }
+            else if (Input.GetMouseButton(0))
+            {
+                if(scanningBug != null)
+                {
+                    scanTime += Time.deltaTime;
                 }
             }
 
             // Temporary Triggering stuff
             if (Input.GetKeyDown(KeyCode.T))
             {
-                Bug bugHit = hit.transform.GetComponent<Bug>();
+                Bug bugHit = hitBug.transform.GetComponent<Bug>();
 
                 if (bugHit == null)
                 {
-                    bugHit = hit.transform.GetComponentInParent<Bug>();
+                    bugHit = hitBug.transform.GetComponentInParent<Bug>();
                 }
 
                 if (bugHit != null)
@@ -136,14 +138,22 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (rayHitOther && !rayHitBug)
+        {
+            if (scanningBug != null)
+            {
+                StopScan();
+            }
+        }
+
         if (Input.GetMouseButtonUp(0))
         {
             StopScan();
         }
 
-        if (Physics.Raycast(ray, out hit, interactRange, interactableLayer))
+        if (rayHitInteractable)
         {
-            Interactable interactableHit = hit.transform.GetComponent<Interactable>();
+            Interactable interactableHit = hitInteractable.transform.GetComponent<Interactable>();
 
             if (interactableHit != null)
             {
