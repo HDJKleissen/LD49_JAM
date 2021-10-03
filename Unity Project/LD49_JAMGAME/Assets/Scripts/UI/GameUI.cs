@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
-    public TextMeshProUGUI BugCounterText;
     public Image ScanCircleImage;
     public FailureCounter failureCounter;
     public HintsOverlay hintsOverlay;
@@ -22,11 +21,6 @@ public class GameUI : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void UpdateBugCounter(int currentAmount, int totalAmount)
-    {
-        BugCounterText.SetText($"{currentAmount}/{totalAmount}");
     }
 
     internal void UpdateScanningUI(float percentage)

@@ -7,6 +7,7 @@ public abstract class Bug : MonoBehaviour, IFixable
 {
     public Transform FixingParticlesLocation;
     public Transform FixTimeCircleLocation;
+
     [SerializeField] float scanTime;
 
     [SerializeField] bool isBugged = true;

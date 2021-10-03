@@ -6,11 +6,12 @@ using UnityEngine;
 public class GameManager : UnitySingleton<GameManager>
 {
     public GameUI gameUI;
+    public EndingController endingController;
 
     public List<Bug> bugsInLevel = new List<Bug>();
     public List<Bug> fixedBugs = new List<Bug>();
     public int MaxBugFixFailures;
-    public bool IsPaused = false;
+    public bool IsPaused = false, IsEnding = false;
 
     int bugFixFailures = 0;
 
@@ -37,6 +38,10 @@ public class GameManager : UnitySingleton<GameManager>
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            StartEnding();
+        }
     }
 
     public void HandleBugToggleFix(Bug bug)
@@ -49,7 +54,6 @@ public class GameManager : UnitySingleton<GameManager>
         {
             fixedBugs.Add(bug);
         }
-        UpdateUI();
     }
 
     internal void RegisterBug(Bug pointoutable)
@@ -59,13 +63,6 @@ public class GameManager : UnitySingleton<GameManager>
         {
             fixedBugs.Add(pointoutable);
         }
-        UpdateUI();
-    }
-
-    void UpdateUI()
-    {
-        gameUI.UpdateBugCounter(fixedBugs.Count, bugsInLevel.Count);
-
     }
 
     internal void DisableScanUI()
@@ -91,5 +88,14 @@ public class GameManager : UnitySingleton<GameManager>
     internal void ShowHint(string text, float showTime)
     {
         gameUI.ShowHint(text, showTime);
+    }
+
+    public void StartEnding()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        IsEnding = true;
+        gameUI.gameObject.SetActive(false);
+        endingController.StartEnding();
     }
 }
