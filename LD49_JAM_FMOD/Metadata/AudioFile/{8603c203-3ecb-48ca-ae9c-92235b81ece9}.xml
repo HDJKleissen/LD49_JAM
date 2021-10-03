@@ -2,10 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{8603c203-3ecb-48ca-ae9c-92235b81ece9}">
 		<property name="assetPath">
-			<value>Phone_Ring_01.wav</value>
-		</property>
-		<property name="isStreaming">
-			<value>true</value>
+			<value>Office Sounds/Phone_Ring_01.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

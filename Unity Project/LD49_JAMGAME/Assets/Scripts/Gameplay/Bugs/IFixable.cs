@@ -21,7 +21,7 @@ public interface IFixable
         set;
     }
 
-    float ScanTime {
-        get;
-    }
+    //float ScanTime {
+    //    get;
+    //}
 }

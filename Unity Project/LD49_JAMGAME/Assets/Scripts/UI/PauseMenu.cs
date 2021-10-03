@@ -27,7 +27,7 @@ public class PauseMenu : MonoBehaviour
     public void SetPausedState(bool paused)
     {
         isPaused = paused;
-
+        GameManager.Instance.IsPaused = paused;
         PauseMenuObject.SetActive(isPaused);
         if (isPaused)
         {

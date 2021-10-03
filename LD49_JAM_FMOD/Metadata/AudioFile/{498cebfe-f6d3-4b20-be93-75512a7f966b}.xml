@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{498cebfe-f6d3-4b20-be93-75512a7f966b}">
 		<property name="assetPath">
-			<value>Whoosh_Fast_Short_Dull_ODS-1188-087-02.wav</value>
+			<value>JumpsLands/Whoosh_Fast_Short_Dull_ODS-1188-087-02.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

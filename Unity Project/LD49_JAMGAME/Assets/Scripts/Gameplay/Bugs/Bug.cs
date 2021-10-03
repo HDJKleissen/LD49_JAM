@@ -22,7 +22,7 @@ public abstract class Bug : MonoBehaviour, IFixable
     public bool IsFixed { get => isFixed; set => isFixed = value; }
     public bool IsFixing { get => isFixing; set => isFixing = value; }
     public bool IsBugged { get => isBugged; set => isBugged = value; }
-    public float ScanTime => scanTime;
+    //public float ScanTime => scanTime;
 
     // Start is called before the first frame update
     void Start()
