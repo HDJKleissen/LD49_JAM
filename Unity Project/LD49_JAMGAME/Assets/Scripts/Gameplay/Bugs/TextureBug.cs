@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightBug : Bug, IHighlightable
+public class TextureBug : Bug, IHighlightable
 {
     [SerializeField] Renderer Renderer;
-    [SerializeField] Color startColor, endColor;
-    [SerializeField] Light Light;
 
     Color originalColor = Color.white;
     public Color OriginalColor { get => originalColor; set => originalColor = value; }
@@ -15,15 +13,7 @@ public class LightBug : Bug, IHighlightable
 
     public override void DoStart()
     {
-        if(Light == null)
-        {
-            Light = GetComponentInChildren<Light>();
-        }
-        if(Renderer == null)
-        {
-            Renderer = GetComponentInChildren<Renderer>();
-        }
-        Light.color = startColor;
+        Renderer.material.SetFloat("_Blend", 0);
     }
 
     public override void DoUpdate()
@@ -53,11 +43,11 @@ public class LightBug : Bug, IHighlightable
 
         while (elapsedTime < seconds)
         {
-            Light.color = Color.Lerp(startColor, endColor, (elapsedTime / seconds));
+            Renderer.material.SetFloat("_Blend",Mathf.Lerp(0, 1, elapsedTime / seconds));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        Light.color = endColor;
+        Renderer.material.SetFloat("_Blend", 1);
     }
 
     public void ToggleHighlight(bool highlighting)
