@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.1802837, g: 0.22571404, b: 0.30692273, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -899,7 +899,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 2.0631769, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1748,6 +1748,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158648580}
   m_CullTransparentMesh: 1
+--- !u!1001 &1368093890
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3104646314673736360, guid: c843c62225d8d4ba49b3df84c67ea39d, type: 3}
+      propertyPath: m_RootOrder
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104646314673736360, guid: c843c62225d8d4ba49b3df84c67ea39d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104646314673736360, guid: c843c62225d8d4ba49b3df84c67ea39d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104646314673736360, guid: c843c62225d8d4ba49b3df84c67ea39d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104646314673736360, guid: c843c62225d8d4ba49b3df84c67ea39d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104646314673736360, guid: c843c62225d8d4ba49b3df84c67ea39d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104646314673736360, guid: c843c62225d8d4ba49b3df84c67ea39d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104646314673736360, guid: c843c62225d8d4ba49b3df84c67ea39d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104646314673736360, guid: c843c62225d8d4ba49b3df84c67ea39d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104646314673736360, guid: c843c62225d8d4ba49b3df84c67ea39d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104646314673736360, guid: c843c62225d8d4ba49b3df84c67ea39d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104646314673736361, guid: c843c62225d8d4ba49b3df84c67ea39d, type: 3}
+      propertyPath: EventPath
+      value: event:/Menu_Ambience
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104646314673736362, guid: c843c62225d8d4ba49b3df84c67ea39d, type: 3}
+      propertyPath: m_Name
+      value: AmbiencePlayer
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c843c62225d8d4ba49b3df84c67ea39d, type: 3}
 --- !u!1 &1395683402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,7 +1972,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 2.0631769, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
