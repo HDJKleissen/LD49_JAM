@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.01.00">
-	<object class="AudioFile" id="{2e56baa7-9f31-4cb9-ad87-fcf378ca3ede}">
+	<object class="AudioFile" id="{17f0b951-6023-4a69-bd38-c3d393051929}">
 		<property name="assetPath">
-			<value>NPC Lines/NPC_Bark_Bugged_06.wav</value>
+			<value>NPC Lines/NPC_Bark_Bugged_07.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
@@ -11,7 +11,7 @@
 			<value>1</value>
 		</property>
 		<property name="length">
-			<value>28.434354166666665</value>
+			<value>6.7496666666666663</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{b0ad27c8-8d7e-4f2a-b7b8-3dc790281cdc}</destination>
