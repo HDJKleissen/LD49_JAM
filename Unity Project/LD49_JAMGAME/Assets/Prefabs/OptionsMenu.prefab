@@ -1106,7 +1106,6 @@ MonoBehaviour:
   SFXText: {fileID: 0}
   MouseSensitivityText: {fileID: 4178027253194905967}
   MusicSlider: {fileID: 4178027254966774347}
-  SFXSlider: {fileID: 0}
   MouseSensitivitySlider: {fileID: 4178027254660380762}
 --- !u!1 &4178027254660380760
 GameObject:
