@@ -24,4 +24,9 @@ public class ElevatorMusic : MonoBehaviour
     {
         Music.setParameterByName("Glitch", isFixed ? 0 : 1);
     }
+
+    public void SetDoorOpen(bool isOpen)
+    {
+        Music.setParameterByName("DoorOpen", isOpen ? 0f : 1f);
+    }
 }
