@@ -9,6 +9,11 @@ public class GameManager : UnitySingleton<GameManager>
 
     public List<Bug> bugsInLevel = new List<Bug>();
     public List<Bug> fixedBugs = new List<Bug>();
+    public int MaxBugFixFailures;
+    public bool IsPaused = false;
+
+    int bugFixFailures = 0;
+
 
     static float _mouseSensitivity = -1f;
     public static float MouseSensitivity {
@@ -26,7 +31,7 @@ public class GameManager : UnitySingleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-
+        gameUI.InitMaxFailures(MaxBugFixFailures);
     }
 
     // Update is called once per frame
@@ -71,5 +76,16 @@ public class GameManager : UnitySingleton<GameManager>
     internal void UpdateScanningUI(float scanTime, float maxScanTime)
     {
         gameUI.UpdateScanningUI(scanTime/maxScanTime);
+    }
+
+    internal void BugReportFailure()
+    {
+        bugFixFailures++;
+        gameUI.AddFailureImage();
+        if (bugFixFailures >= MaxBugFixFailures)
+        {
+            // You lose!
+            Debug.Log("YOU LOSE");
+        }
     }
 }

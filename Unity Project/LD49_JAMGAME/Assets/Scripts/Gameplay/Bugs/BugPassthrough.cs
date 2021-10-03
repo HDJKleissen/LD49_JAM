@@ -10,7 +10,7 @@ public class BugPassthrough : MonoBehaviour, IFixable
     public bool IsFixing { get => LinkedBug.IsFixing; set => LinkedBug.IsFixing = value; }
     public bool IsBugged { get => LinkedBug.IsBugged; set => LinkedBug.IsBugged = value; }
 
-    public float ScanTime => LinkedBug.ScanTime;
+    //public float ScanTime => LinkedBug.ScanTime;
 
     public void StartFix()
     {

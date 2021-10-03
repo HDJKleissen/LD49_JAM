@@ -35,8 +35,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float maxScanTime;
     [SerializeField] float interactRange;
     IFixable scanningBug = null;
+    bool scanningNonBug = false;
     IHighlightable highlightedObject = null;
+    Renderer highlightedNonBugNonInteractable = null;
+    Color nonBugNonInteractableDefaultColor = Color.white;
     float scanTime = 0;
+
+    Dictionary<GameObject, Renderer> objectsAndRenderers = new Dictionary<GameObject, Renderer>();
 
     // Start is called before the first frame update
     void Start()
@@ -47,12 +52,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        UpdateMouseLook();
-        UpdateMovement();
-        HandleJumping();
-        HandlePointing();
+        if (!GameManager.Instance.IsPaused)
+        {
+            UpdateMouseLook();
+            UpdateMovement();
+            HandleJumping();
+            HandlePointing();
 
-        previousGrounded = CharacterController.isGrounded;
+            previousGrounded = CharacterController.isGrounded;
+        }
     }
 
     private void HandlePointing()
@@ -130,7 +138,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        else
+        else if(!rayHitOther)
         {
             if (scanningBug != null)
             {
@@ -138,11 +146,22 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (rayHitOther && !rayHitBug)
+        if (rayHitOther && !rayHitBug && !rayHitInteractable)
         {
-            if (scanningBug != null)
+            if (Input.GetMouseButtonDown(0))
+            {
+                StartScan();
+            }
+            else if (scanningBug != null)
             {
                 StopScan();
+            }
+            else if(Input.GetMouseButton(0))
+            {
+                if (scanningNonBug)
+                {
+                    scanTime += Time.deltaTime;
+                }
             }
         }
 
@@ -173,35 +192,83 @@ public class PlayerController : MonoBehaviour
 
             }
         }
-        if (clearHighlight && highlightedObject != null)
+        if (rayHitOther && !rayHitInteractable && !rayHitBug)
         {
-            highlightedObject.ToggleHighlight(false);
+            GameObject hitObject = hitOther.transform.gameObject;
+            if (hitObject.tag != "Player")
+            {
+                Renderer renderer;
+
+                if (objectsAndRenderers.ContainsKey(hitObject))
+                {
+                    renderer = objectsAndRenderers[hitObject];
+                }
+                else
+                {
+                    renderer = hitObject.GetComponent<Renderer>();
+                    objectsAndRenderers.Add(hitObject, renderer);
+                }
+                if (highlightedNonBugNonInteractable != null && highlightedNonBugNonInteractable != renderer)
+                {
+                    highlightedNonBugNonInteractable.material.color = nonBugNonInteractableDefaultColor;
+                }
+
+                renderer.material.color = Constants.HIGHLIGHT_COLOR;
+                highlightedNonBugNonInteractable = renderer;
+                clearHighlight = false;
+            }
+        }
+
+        if (clearHighlight && (highlightedObject != null || highlightedNonBugNonInteractable != null))
+        {
+            if (highlightedNonBugNonInteractable != null)
+            {
+                Debug.Log("Clearing highnonbugnonint");
+                highlightedNonBugNonInteractable.material.color =  nonBugNonInteractableDefaultColor;
+            }
+            highlightedObject?.ToggleHighlight(false);
             highlightedObject = null;
+            highlightedNonBugNonInteractable = null;
+            nonBugNonInteractableDefaultColor = Color.white;
         }    
 
-        if (scanningBug != null)
+        if (scanningBug != null || scanningNonBug)
         {
             GameManager.Instance.UpdateScanningUI(scanTime, maxScanTime);
             if (scanTime >= maxScanTime)
             {
-                scanningBug.StartFix();
+                if (scanningNonBug)
+                {
+                    GameManager.Instance.BugReportFailure(); 
+                }
+                else
+                {
+                    scanningBug.StartFix();
+                }
                 StopScan();
             }
         }
     }
 
-
+    void StartScan()
+    {
+        Debug.Log("Starting wrong scan");
+        scanningNonBug = true;
+        scanTime = 0;
+        maxScanTime = 1;
+    }
 
     void StartScan(IFixable bug)
     {
         Debug.Log("Starting scan");
         scanningBug = bug;
         scanTime = 0;
-        maxScanTime = scanningBug.ScanTime;
+        maxScanTime = 1;
     }
 
     void StopScan()
     {
+        scanningNonBug = false;
         scanningBug = null;
         scanTime = 0;
         maxScanTime = -1;
