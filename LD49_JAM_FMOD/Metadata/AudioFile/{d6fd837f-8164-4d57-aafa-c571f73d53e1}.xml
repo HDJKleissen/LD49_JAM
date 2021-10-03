@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{d6fd837f-8164-4d57-aafa-c571f73d53e1}">
+		<property name="assetPath">
+			<value>PA Lines/PA_Voice_09.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>11.375</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b0ad27c8-8d7e-4f2a-b7b8-3dc790281cdc}</destination>
+		</relationship>
+	</object>
+</objects>
