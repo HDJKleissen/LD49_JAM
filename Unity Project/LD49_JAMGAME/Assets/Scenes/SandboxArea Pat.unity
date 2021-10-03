@@ -616,6 +616,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 1711273555}
   CorrectObject: {fileID: 0}
+  GlitchyMovement: 0
+  GlitchyRotation: 0
+  BaseGlitchMoveAmplitude: 0.05
+  BaseGlitchRotateAmplitude: 1
 --- !u!136 &207566080
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -949,6 +953,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 991307888}
   CorrectObject: {fileID: 0}
+  GlitchyMovement: 0
+  GlitchyRotation: 0
+  BaseGlitchMoveAmplitude: 0.05
+  BaseGlitchRotateAmplitude: 1
 --- !u!136 &431655499
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1964,6 +1972,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   CorrectObject: {fileID: 0}
+  GlitchyMovement: 0
+  GlitchyRotation: 0
+  BaseGlitchMoveAmplitude: 0.05
+  BaseGlitchRotateAmplitude: 1
 --- !u!136 &929741628
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4120,6 +4132,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   CorrectObject: {fileID: 0}
+  GlitchyMovement: 0
+  GlitchyRotation: 0
+  BaseGlitchMoveAmplitude: 0.05
+  BaseGlitchRotateAmplitude: 1
 --- !u!1 &1690935459
 GameObject:
   m_ObjectHideFlags: 0
@@ -4205,6 +4221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1711273554}
   - component: {fileID: 1711273555}
+  - component: {fileID: 1711273556}
   m_Layer: 3
   m_Name: WatercoolerInstant
   m_TagString: Untagged
@@ -4248,6 +4265,22 @@ MonoBehaviour:
   MaxFixTime: 0
   CorrectObject: {fileID: 2118509377}
   IncorrectObject: {fileID: 207566079}
+--- !u!114 &1711273556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711273553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24265c7880d3c4b45a68dcb6dd18e8bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeBeforeFirstAnnouncement: 5
+  ShortestTimeBetweenAnnouncements: 25
+  LongestTimeBetweenAnnouncements: 35
+  isBug: 0
 --- !u!1 &1731741881
 GameObject:
   m_ObjectHideFlags: 0
@@ -5683,6 +5716,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 897993246, guid: b2acfd8b99e097940ab91dc4fcf553b3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2120447458656057358, guid: b2acfd8b99e097940ab91dc4fcf553b3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
