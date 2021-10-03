@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.Instance.IsPaused)
+        if (!GameManager.Instance.IsPaused && !GameManager.Instance.IsEnding)
         {
             UpdateMouseLook();
             UpdateMovement();
