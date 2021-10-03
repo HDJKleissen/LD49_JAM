@@ -9,6 +9,7 @@ public class GameUI : MonoBehaviour
 {
     public TextMeshProUGUI BugCounterText;
     public Image ScanCircleImage;
+    public FailureCounter failureCounter;
 
     // Start is called before the first frame update
     void Start()
@@ -40,5 +41,15 @@ public class GameUI : MonoBehaviour
     {
         ScanCircleImage.fillAmount = 0;
         ScanCircleImage.gameObject.SetActive(false);
+    }
+
+    internal void InitMaxFailures(int amount)
+    {
+        failureCounter.InitMaxFailureAmount(amount);
+    }
+
+    internal void AddFailureImage()
+    {
+        failureCounter.AddFailure();
     }
 }
