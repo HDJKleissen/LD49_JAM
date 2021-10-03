@@ -456,6 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LinkedBug: {fileID: 489669766}
+  ObjectRenderer: {fileID: 54269095}
 --- !u!135 &137549942
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5927,10 +5928,6 @@ PrefabInstance:
     - target: {fileID: 3838870989389387028, guid: 37150fc86c09e1047867107d70bcb21e, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3838870989389387029, guid: 37150fc86c09e1047867107d70bcb21e, type: 3}
-      propertyPath: interactRange
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37150fc86c09e1047867107d70bcb21e, type: 3}

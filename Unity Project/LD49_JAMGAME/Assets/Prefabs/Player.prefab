@@ -276,6 +276,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   maxScanTime: 0
+  interactRange: 4
 --- !u!114 &3838870989389387024
 MonoBehaviour:
   m_ObjectHideFlags: 0

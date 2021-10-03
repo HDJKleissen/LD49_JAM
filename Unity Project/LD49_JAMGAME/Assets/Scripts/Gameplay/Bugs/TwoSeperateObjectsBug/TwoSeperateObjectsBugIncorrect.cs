@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TwoSeperateObjectsBugIncorrect : MonoBehaviour
+public class TwoSeperateObjectsBugIncorrect : MonoBehaviour, IHighlightable
 {
     public TwoSeperateObjectsBug parent;
     public TwoSeperateObjectsBugCorrect CorrectObject;
+
+    Renderer Renderer;
+
+
+    Color originalColor;
+    public Color OriginalColor { get => originalColor; set => originalColor = value; }
+    public Color highlightColor => Color.yellow;
+
 
     // Start is called before the first frame update
     void Start()
@@ -14,7 +22,12 @@ public class TwoSeperateObjectsBugIncorrect : MonoBehaviour
         {
             parent = GetComponentInParent<TwoSeperateObjectsBug>();
         }
+        if(Renderer == null)
+        {
+            Renderer = GetComponent<Renderer>();
+        }
         CorrectObject = parent.CorrectObject;
+        OriginalColor = Renderer.material.color;
     }
 
     // Update is called once per frame
@@ -24,6 +37,7 @@ public class TwoSeperateObjectsBugIncorrect : MonoBehaviour
 
     public void StartFixing()
     {
+        ToggleHighlight(false);
         StartCoroutine(MoveOverSeconds(parent.CorrectObject, parent.MaxFixTime));
     }
 
@@ -51,5 +65,17 @@ public class TwoSeperateObjectsBugIncorrect : MonoBehaviour
         gameObject.transform.position = endPosition;
         gameObject.transform.localScale = endScale;
         gameObject.transform.rotation = endRotation;
+    }
+
+    public void ToggleHighlight(bool highlighting)
+    {
+        if (highlighting && !parent.IsFixing)
+        {
+            Renderer.material.color = highlightColor;
+        }
+        else
+        {
+            Renderer.material.color = OriginalColor;
+        }
     }
 }

@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float maxScanTime;
     [SerializeField] float interactRange;
     IFixable scanningBug = null;
+    IHighlightable highlightedObject = null;
     float scanTime = 0;
 
     // Start is called before the first frame update
@@ -56,11 +57,25 @@ public class PlayerController : MonoBehaviour
 
     private void HandlePointing()
     {
+        bool clearHighlight = true;
         RaycastHit hit;
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit, interactRange, pointableLayer))
         {
+            IHighlightable highlightAbleObject = hit.transform.GetComponent<IHighlightable>();
+            if (highlightAbleObject != null)
+            {
+                clearHighlight = false;
+
+                if (highlightedObject == null || highlightedObject != highlightAbleObject)
+                {
+                    highlightedObject?.ToggleHighlight(false);
+                    highlightedObject = highlightAbleObject;
+                    highlightedObject.ToggleHighlight(true);
+                }
+            }
+
             if (Input.GetMouseButton(0))
             {
                 IFixable bugHit = hit.transform.GetComponent<IFixable>();
@@ -124,15 +139,31 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, interactRange, interactableLayer))
         {
+            Interactable interactableHit = hit.transform.GetComponent<Interactable>();
+
+            if (interactableHit != null)
+            {
+                clearHighlight = false;
+
+                if (highlightedObject == null || highlightedObject != interactableHit as IHighlightable)
+                {
+                    highlightedObject?.ToggleHighlight(false);
+                    highlightedObject = interactableHit;
+                    highlightedObject.ToggleHighlight(true);
+                }
+            }
+            
             if (Input.GetButtonDown("Use"))
             {
-                Interactable interactableHit = hit.transform.GetComponent<Interactable>();
-                if (interactableHit != null)
-                {
-                    interactableHit.Interact();
-                }
-            } 
+                interactableHit.Interact();
+
+            }
         }
+        if (clearHighlight && highlightedObject != null)
+        {
+            highlightedObject.ToggleHighlight(false);
+            highlightedObject = null;
+        }    
 
         if (scanningBug != null)
         {

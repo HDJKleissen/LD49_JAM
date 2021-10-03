@@ -20,4 +20,9 @@ public class LoadSceneButton : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+    public void ResetTime()
+    {
+        Time.timeScale = 1;
+    }
 }
