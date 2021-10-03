@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
 
                 if (highlightedObject == null || highlightedObject != highlightAbleObject)
                 {
+                    StopHighlight();
                     highlightedObject?.ToggleHighlight(false);
                     highlightedObject = highlightAbleObject;
                     highlightedObject.ToggleHighlight(true);
@@ -138,12 +139,9 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        else if(!rayHitOther)
+        else if(!scanningNonBug && scanningBug != null)
         {
-            if (scanningBug != null)
-            {
-                StopScan();
-            }
+            StopScan();
         }
 
         if (rayHitOther && !rayHitBug && !rayHitInteractable)
@@ -164,6 +162,10 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        else if (scanningNonBug)
+        {
+            StopScan();
+        }
 
         if (Input.GetMouseButtonUp(0))
         {
@@ -180,6 +182,7 @@ public class PlayerController : MonoBehaviour
 
                 if (highlightedObject == null || highlightedObject != interactableHit as IHighlightable)
                 {
+                    StopHighlight();
                     highlightedObject?.ToggleHighlight(false);
                     highlightedObject = interactableHit;
                     highlightedObject.ToggleHighlight(true);
@@ -213,6 +216,7 @@ public class PlayerController : MonoBehaviour
                     highlightedNonBugNonInteractable.material.color = nonBugNonInteractableDefaultColor;
                 }
 
+                StopHighlight();
                 renderer.material.color = Constants.HIGHLIGHT_COLOR;
                 highlightedNonBugNonInteractable = renderer;
                 clearHighlight = false;
@@ -221,16 +225,8 @@ public class PlayerController : MonoBehaviour
 
         if (clearHighlight && (highlightedObject != null || highlightedNonBugNonInteractable != null))
         {
-            if (highlightedNonBugNonInteractable != null)
-            {
-                Debug.Log("Clearing highnonbugnonint");
-                highlightedNonBugNonInteractable.material.color =  nonBugNonInteractableDefaultColor;
-            }
-            highlightedObject?.ToggleHighlight(false);
-            highlightedObject = null;
-            highlightedNonBugNonInteractable = null;
-            nonBugNonInteractableDefaultColor = Color.white;
-        }    
+            StopHighlight();
+        }
 
         if (scanningBug != null || scanningNonBug)
         {
@@ -250,8 +246,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void StopHighlight()
+    {
+        if (highlightedNonBugNonInteractable != null)
+        {
+            Debug.Log("Clearing highnonbugnonint");
+            highlightedNonBugNonInteractable.material.color = nonBugNonInteractableDefaultColor;
+        }
+        highlightedObject?.ToggleHighlight(false);
+        highlightedObject = null;
+        highlightedNonBugNonInteractable = null;
+        nonBugNonInteractableDefaultColor = Color.white;
+    }
+
     void StartScan()
     {
+        StopScan();
         Debug.Log("Starting wrong scan");
         scanningNonBug = true;
         scanTime = 0;
@@ -260,6 +270,7 @@ public class PlayerController : MonoBehaviour
 
     void StartScan(IFixable bug)
     {
+        StopScan();
         Debug.Log("Starting scan");
         scanningBug = bug;
         scanTime = 0;
@@ -268,6 +279,7 @@ public class PlayerController : MonoBehaviour
 
     void StopScan()
     {
+        StopHighlight();
         scanningNonBug = false;
         scanningBug = null;
         scanTime = 0;
