@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{f08eb782-0fd9-4b61-b567-2a7e8d55774b}">
+		<property name="name">
+			<value>DoorOpen</value>
+		</property>
+		<relationship name="folder">
+			<destination>{eef70ccc-793f-4dea-9a88-56d13623cbed}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{6e982036-ebb0-426e-a3da-a1c7b2772913}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{6e982036-ebb0-426e-a3da-a1c7b2772913}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>1.8999999761581421</value>
+		</property>
+	</object>
+</objects>

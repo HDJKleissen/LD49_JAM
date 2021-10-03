@@ -262,8 +262,8 @@
 			<destination>{6e982036-ebb0-426e-a3da-a1c7b2772913}</destination>
 		</relationship>
 		<relationship name="automationPoints">
-			<destination>{badfdd1f-9a87-4663-91ae-73a7ec70bb07}</destination>
 			<destination>{0146d890-8757-4858-99b1-49f0e8b96f4a}</destination>
+			<destination>{bf43abae-fbaa-4d94-9036-0dd66c53bce2}</destination>
 		</relationship>
 	</object>
 	<object class="LowpassSimpleEffect" id="{8092e632-7a6d-4c6d-a9bd-664683d3dcf8}">
@@ -312,20 +312,20 @@
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{c68cc4bb-3be3-4305-96e6-0f824574dd1a}" />
-	<object class="AutomationPoint" id="{badfdd1f-9a87-4663-91ae-73a7ec70bb07}">
-		<property name="position">
-			<value>0.99589490968801309</value>
-		</property>
-		<property name="value">
-			<value>3.81469727e-06</value>
-		</property>
-	</object>
 	<object class="AutomationPoint" id="{0146d890-8757-4858-99b1-49f0e8b96f4a}">
 		<property name="position">
 			<value>0</value>
 		</property>
 		<property name="value">
 			<value>-7</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{bf43abae-fbaa-4d94-9036-0dd66c53bce2}">
+		<property name="position">
+			<value>1</value>
+		</property>
+		<property name="value">
+			<value>3.81469727e-06</value>
 		</property>
 	</object>
 	<object class="Automator" id="{77fcf8bc-777f-4a9e-8702-bd1e1e8c7c60}">
