@@ -64,6 +64,10 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, interactRange, pointableLayer))
         {
             IHighlightable highlightAbleObject = hit.transform.GetComponent<IHighlightable>();
+            if(highlightAbleObject == null)
+            {
+                highlightAbleObject = hit.transform.GetComponentInParent<IHighlightable>();
+            }
             if (highlightAbleObject != null)
             {
                 clearHighlight = false;
