@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{22847bba-2e54-4f40-a360-2760934dcbd1}">
 		<property name="assetPath">
-			<value>Computer_Typing_02.wav</value>
+			<value>Office Sounds/Computer_Typing_02.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
