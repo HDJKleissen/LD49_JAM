@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{cbc5424c-9bfa-4dfe-89f9-9f4e44ad63fe}">
 		<property name="assetPath">
-			<value>Male_Cough_ODY-1189-016.wav</value>
+			<value>Office Sounds/Male_Cough_ODY-1189-016.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{9395e8da-be9a-4d8d-bbb4-ea532947ef41}">
 		<property name="assetPath">
-			<value>Lobby Bell.wav</value>
+			<value>Office Sounds/Lobby Bell.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
