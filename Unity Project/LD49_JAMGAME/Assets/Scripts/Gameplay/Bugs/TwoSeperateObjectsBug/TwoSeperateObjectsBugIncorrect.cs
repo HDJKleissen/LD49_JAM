@@ -12,7 +12,7 @@ public class TwoSeperateObjectsBugIncorrect : MonoBehaviour, IHighlightable
 
     Color originalColor;
     public Color OriginalColor { get => originalColor; set => originalColor = value; }
-    public Color highlightColor => Color.yellow;
+    public Color highlightColor => Constants.HIGHLIGHT_COLOR;
 
 
     // Start is called before the first frame update

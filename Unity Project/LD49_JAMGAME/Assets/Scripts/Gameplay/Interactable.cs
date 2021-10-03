@@ -7,23 +7,21 @@ public class Interactable : MonoBehaviour, IHighlightable
 {
     public Bug LinkedBug;
     public Renderer ObjectRenderer;
-    Vector3 originalScale;
 
     Color originalColor = Color.white;
-    public Color OriginalColor { get => originalColor; set => originalColor=value; }
+    public Color OriginalColor { get => originalColor; set => originalColor = value; }
 
-    public Color highlightColor => Color.yellow;
+    public Color highlightColor => Constants.HIGHLIGHT_COLOR;
 
     // Start is called before the first frame update
     void Start()
     {
-        originalScale = ObjectRenderer.transform.localScale;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Interact()
@@ -36,12 +34,10 @@ public class Interactable : MonoBehaviour, IHighlightable
         if (highlighting)
         {
             ObjectRenderer.material.color = highlightColor;
-            ObjectRenderer.transform.localScale = originalScale * 1.2f;
         }
         else
         {
             ObjectRenderer.material.color = OriginalColor;
-            ObjectRenderer.transform.localScale = originalScale;
         }
     }
 }
