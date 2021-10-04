@@ -8,6 +8,8 @@ public class GameManager : UnitySingleton<GameManager>
     public GameUI gameUI;
     public EndingController endingController;
 
+    public bool ElevatorMusicIsFixed = false;
+
     public List<Bug> bugsInLevel = new List<Bug>();
     public List<Bug> fixedBugs = new List<Bug>();
     public int MaxBugFixFailures;

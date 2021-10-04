@@ -8,7 +8,7 @@ public class Elevator : MonoBehaviour
     public Animator animator;
     public float MoveSpeed;
 
-    private ElevatorMusic elevatorMusic;
+    public ElevatorMusic elevatorMusic;
 
     bool isOpen = false;
     bool isDown = false;
@@ -16,7 +16,10 @@ public class Elevator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        elevatorMusic = GetComponent<ElevatorMusic>();
+        if (elevatorMusic == null)
+        {
+            elevatorMusic = GetComponent<ElevatorMusic>();
+        }
     }
 
     // Update is called once per frame
@@ -55,12 +58,10 @@ public class Elevator : MonoBehaviour
         if(!isOpen)
         {
             OpenDoors();
-            elevatorMusic.SetDoorOpen(isOpen);
         }
         else
         {
             CloseDoors();
-            elevatorMusic.SetDoorOpen(isOpen);
         }
     }
 
@@ -74,6 +75,7 @@ public class Elevator : MonoBehaviour
             LinkedElevator.isOpen = true;
             LinkedElevator.animator.SetTrigger("OpenDoors");
         }
+        elevatorMusic.SetDoorOpen(isOpen);
     }
 
     public void CloseDoors()
@@ -86,6 +88,7 @@ public class Elevator : MonoBehaviour
             LinkedElevator.isOpen = false;
             LinkedElevator.animator.SetTrigger("CloseDoors");
         }
+        elevatorMusic.SetDoorOpen(isOpen);
     }
 
     public void MoveElevator()

@@ -53,7 +53,7 @@ public class BugShowCamera : MonoBehaviour
                 StartCoroutine(MoveOverSeconds(transform.position.z + 0.5f, originalScale, 0.2f));
             }
         }
-        if(screenPosition.x < 0 - Screen.width/3)
+        if(screenPosition.x < 0 - Screen.width/2)
         {
             Destroy(Camera.gameObject);
             Destroy(gameObject);
@@ -65,11 +65,11 @@ public class BugShowCamera : MonoBehaviour
         Camera.transform.LookAt(Bug.FixingParticlesLocation);
         if (rotateRight)
         {
-            Camera.transform.Translate(Vector3.right * 2 * Time.deltaTime);
+            Camera.transform.Translate(Vector3.right * 1.2f * Time.deltaTime);
         }
         else
         {
-            Camera.transform.Translate(Vector3.left * 2 * Time.deltaTime);
+            Camera.transform.Translate(Vector3.left * 1.2f * Time.deltaTime);
         }
     }
 

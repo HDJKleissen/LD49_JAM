@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1122578783192510634}
   - component: {fileID: 2000788789624349563}
+  - component: {fileID: 3396668403765127003}
   m_Layer: 0
   m_Name: 'Elevator '
   m_TagString: Untagged
@@ -49,6 +50,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e7f21ed6ea3846d6835475dfe6a2ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3396668403765127003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351249813853186576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75332991e1db9f34c8ad5949ef4f0227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FixingParticlesLocation: {fileID: 0}
+  FixTimeCircleLocation: {fileID: 0}
+  scanTime: 0
+  isBugged: 1
+  isFixed: 0
+  MaxFixTime: 1
+  BugCollider: {fileID: 0}
+  elevatorMusic: {fileID: 2000788789624349563}
+  radioMusic: {fileID: 0}
+  Renderer: {fileID: 3740117062128919492}
 --- !u!1 &3044284564075224997
 GameObject:
   m_ObjectHideFlags: 0

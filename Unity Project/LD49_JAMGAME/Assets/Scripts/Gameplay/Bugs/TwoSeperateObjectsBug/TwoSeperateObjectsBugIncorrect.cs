@@ -10,7 +10,7 @@ public class TwoSeperateObjectsBugIncorrect : MonoBehaviour, IHighlightable
     [SerializeField] float BaseGlitchMoveAmplitude = 0.05f;
     [SerializeField] float BaseGlitchRotateAmplitude = 1f;
     Vector3 baseLocation, baseRotationEulers;
-    Renderer Renderer;
+    public Renderer Renderer;
 
 
     Color originalColor;
@@ -28,6 +28,10 @@ public class TwoSeperateObjectsBugIncorrect : MonoBehaviour, IHighlightable
         if(Renderer == null)
         {
             Renderer = GetComponent<Renderer>();
+            if(Renderer == null)
+            {
+                Renderer = GetComponentInChildren<Renderer>();
+            }
         }
         CorrectObject = parent.CorrectObject;
         OriginalColor = Renderer.material.color;

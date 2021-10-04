@@ -19,7 +19,7 @@ public abstract class Bug : MonoBehaviour, IFixable
     GameObject particlesObject;
     FixTimeCircle fixTimeCircle;
     float fixTime = 0;
-
+    public Collider BugCollider;
     public bool IsFixed { get => isFixed; set => isFixed = value; }
     public bool IsFixing { get => isFixing; set => isFixing = value; }
     public bool IsBugged { get => isBugged; set => isBugged = value; }
@@ -31,6 +31,12 @@ public abstract class Bug : MonoBehaviour, IFixable
         DoStart();
         if (IsBugged)
         {
+            // Layer 3 is bug layer
+            gameObject.layer = 3;
+            if (BugCollider != null)
+            {
+                BugCollider.gameObject.layer = 3;
+            }
             GameManager.Instance.RegisterBug(this);
         }
         if (FixingParticlesLocation == null)
@@ -71,6 +77,12 @@ public abstract class Bug : MonoBehaviour, IFixable
     {
         if (!IsBugged)
         {
+            // Layer 3 is bug layer
+            gameObject.layer = 3;
+            if (BugCollider != null)
+            {
+                BugCollider.gameObject.layer = 3;
+            }
             IsBugged = true;
             HandleStartBugging();
             GameManager.Instance.RegisterBug(this);

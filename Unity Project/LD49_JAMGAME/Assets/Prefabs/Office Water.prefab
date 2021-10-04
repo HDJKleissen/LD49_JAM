@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8225895657076894139}
   - component: {fileID: 5010143608619148830}
   - component: {fileID: 7089629367304770260}
+  - component: {fileID: 5258355560415911503}
   m_Layer: 0
   m_Name: Office Water
   m_TagString: Untagged
@@ -82,3 +83,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5258355560415911503
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8746993406746522369}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6393418047374413762, guid: 4c5c1fd6c93f40b408e95bd070449ea4, type: 3}

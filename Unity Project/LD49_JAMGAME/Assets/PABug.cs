@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationBug : Bug
+public class PABug : Bug
 {
-    public Animator animator;
-    
+    PAAnnouncements pa;
     public override void DoStart()
     {
+        pa = GetComponent<PAAnnouncements>();
     }
 
     public override void DoUpdate()
@@ -16,12 +16,10 @@ public class AnimationBug : Bug
 
     public override void HandleAttemptBehaviour()
     {
-        animator.SetTrigger("TryAnimation");
     }
 
     public override void HandleStartBugging()
-    {
-    }
+    { }
 
     public override void HandleStartFix()
     {
@@ -29,9 +27,6 @@ public class AnimationBug : Bug
 
     public override void HandleToggle()
     {
-        if (IsBugged)
-        {
-            animator.SetBool("IsFixed", IsFixed);
-        }
+        pa.isBug = IsFixed;
     }
 }

@@ -13,17 +13,19 @@ public class LightBug : Bug, IHighlightable
 
     public Color highlightColor => Constants.HIGHLIGHT_COLOR;
 
+    Texture originalEmissionMap;
     public override void DoStart()
     {
-        if(Light == null)
+        if (Light == null)
         {
             Light = GetComponentInChildren<Light>();
         }
-        if(Renderer == null)
+        if (Renderer == null)
         {
             Renderer = GetComponentInChildren<Renderer>();
         }
         Light.color = startColor;
+        originalEmissionMap = Renderer.materials[0].GetTexture("_EmissionMap");
     }
 
     public override void DoUpdate()
@@ -62,13 +64,29 @@ public class LightBug : Bug, IHighlightable
 
     public void ToggleHighlight(bool highlighting)
     {
-        if (!IsFixing && IsBugged && !IsFixed && highlighting)
+        if (highlighting && !IsFixing)
         {
-            Renderer.material.color = highlightColor;
+            if (tag == "HasEmissionMap")
+            {
+                Renderer.materials[0].SetTexture("_EmissionMap", null);
+            }
+            else
+            {
+                Renderer.materials[0].EnableKeyword("_EMISSION");
+            }
+            Renderer.materials[0].SetColor("_EmissionColor", highlightColor);
         }
         else
         {
-            Renderer.material.color = OriginalColor;
+            if (tag == "HasEmissionMap")
+            {
+                Renderer.materials[0].SetTexture("_EmissionMap", originalEmissionMap);
+            }
+            else
+            {
+                Renderer.materials[0].DisableKeyword("_EMISSION");
+            }
+            Renderer.materials[0].SetColor("_EmissionColor", OriginalColor);
         }
     }
 }

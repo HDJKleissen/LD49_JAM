@@ -39,7 +39,7 @@ public class EndScreenUI : MonoBehaviour
     public void UpdateGrade()
     {
         int totalBugs = fixedBugs + unfixedBugs;
-        int maxBugs = GameManager.Instance.bugsInLevel.Count;
+        int maxBugs = GameManager.Instance.bugsInLevel.Count - 1; // -1 because of double elevator
 
         switch (fixedBugs - unfixedBugs)
         {
