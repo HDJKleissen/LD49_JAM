@@ -27,6 +27,6 @@ public class PABug : Bug
 
     public override void HandleToggle()
     {
-        pa.isBug = IsFixed;
+        pa.isBug = !IsFixed;
     }
 }

@@ -67,6 +67,7 @@ public class NPCBug : Bug
         {
             if (AnimationBugged)
             {
+                NPC.ToggleHighlight(false);
                 if (CorrectBool == NPCState.BOOL_IDLE)
                 {
                     NPC.SetSitting(false);
