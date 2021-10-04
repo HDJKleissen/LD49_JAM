@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     bool canJump;
     bool previousGrounded = false;
     float velocityY = 0.0f;
+    public float jumpTime = 0.0f;
 
     // Camera & Movement
     [SerializeField] Camera playerCamera = null;
@@ -358,12 +359,12 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator JumpEvent()
     {
-        float timeInAir = 0.0f;
+        jumpTime = 0.0f;
         do
         {
-            float jumpForce = jumpFallOff.Evaluate(timeInAir);
+            float jumpForce = jumpFallOff.Evaluate(jumpTime);
             CharacterController.Move(Vector3.up * jumpForce * jumpMultiplier * Time.deltaTime);
-            timeInAir += Time.deltaTime;
+            jumpTime += Time.deltaTime;
 
             yield return null;
         } while (!CharacterController.isGrounded && CharacterController.collisionFlags != CollisionFlags.Above);
