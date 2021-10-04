@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour, IHighlightable
 {
-    public NPCState CurrentState, PreviousState;
+    bool sitting, walking, talking, tPose;
     public Animator Animator;
     public Renderer[] Parts;
 
@@ -31,59 +31,39 @@ public class NPC : MonoBehaviour, IHighlightable
     // Update is called once per frame
     void Update()
     {
-        if (CurrentState != PreviousState)
-        {
-            SetAnimatorParams();
-        }
-        PreviousState = CurrentState;
     }
 
     void SetAnimatorParams()
     {
-        switch (CurrentState)
-        {
-            case NPCState.Idle:
-                Animator.SetBool(BOOL_SITTING, false);
-                Animator.SetBool(BOOL_WALKING, false);
-                Animator.SetBool(BOOL_TPOSE, false);
-                Animator.SetBool(BOOL_TALKING, false);
-                break;
-            case NPCState.Walking:
-                Animator.SetBool(BOOL_SITTING, false);
-                Animator.SetBool(BOOL_WALKING, true);
-                Animator.SetBool(BOOL_TPOSE, false);
-                Animator.SetBool(BOOL_TALKING, false);
-                break;
-            case NPCState.SittingIdle:
-                Animator.SetBool(BOOL_SITTING, true);
-                Animator.SetBool(BOOL_WALKING, false);
-                Animator.SetBool(BOOL_TPOSE, false);
-                Animator.SetBool(BOOL_TALKING, false);
-                break;
-            case NPCState.SittingTalking:
-                Animator.SetBool(BOOL_SITTING, true);
-                Animator.SetBool(BOOL_WALKING, false);
-                Animator.SetBool(BOOL_TPOSE, false);
-                Animator.SetBool(BOOL_TALKING, true);
-                break;
-            case NPCState.Talking:
-                Animator.SetBool(BOOL_SITTING, false);
-                Animator.SetBool(BOOL_WALKING, false);
-                Animator.SetBool(BOOL_TPOSE, false);
-                Animator.SetBool(BOOL_TALKING, true);
-                break;
-            case NPCState.TPose:
-                Animator.SetBool(BOOL_SITTING, false);
-                Animator.SetBool(BOOL_WALKING, false);
-                Animator.SetBool(BOOL_TPOSE, true);
-                Animator.SetBool(BOOL_TALKING, false);
-                break;
-        }
+        Animator.SetBool(BOOL_SITTING, sitting);
+        Animator.SetBool(BOOL_WALKING, walking);
+        Animator.SetBool(BOOL_TPOSE, tPose);
+        Animator.SetBool(BOOL_TALKING, talking);
+    }
+
+    public void SetTalking(bool newTalking)
+    {
+        talking = newTalking;
+        SetAnimatorParams();
+    }
+    public void SetWalking(bool newWalking)
+    {
+        walking = newWalking;
+        SetAnimatorParams();
+    }
+    public void SetSitting(bool newSitting)
+    {
+        sitting = newSitting;
+        SetAnimatorParams();
+    }
+    public void SetTPose(bool newTPose)
+    {
+        tPose = newTPose;
+        SetAnimatorParams();
     }
 
     public void ToggleHighlight(bool highlighting)
     {
-        Debug.Log("Togglin");
         foreach(Renderer renderer in Parts)
         {
             if (highlighting)

@@ -30,11 +30,11 @@ public class NPCBarkPlayer : MonoBehaviour
         BuggedVOLine.getPlaybackState(out BuggedVOLinePs);
         if(VOLinePs == FMOD.Studio.PLAYBACK_STATE.PLAYING || BuggedVOLinePs == FMOD.Studio.PLAYBACK_STATE.PLAYING )
         {
-            NPC.CurrentState = NPCState.Talking;
+            NPC.SetTalking(true);
         }
         else
         {
-            NPC.CurrentState = NPCState.Idle;
+            NPC.SetTalking(false);
         }
     }
 
