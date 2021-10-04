@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.01.00">
-	<object class="AudioFile" id="{6d3f4721-03c5-4d84-8637-b3ee6ab87300}">
+	<object class="AudioFile" id="{356d42cf-c5ab-42ab-ac45-d6df408d63f7}">
 		<property name="assetPath">
-			<value>Not_a_Bug_Beep_02.wav</value>
+			<value>Bug_Fixed.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>0.5859375</value>
+			<value>1.5</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{b0ad27c8-8d7e-4f2a-b7b8-3dc790281cdc}</destination>
