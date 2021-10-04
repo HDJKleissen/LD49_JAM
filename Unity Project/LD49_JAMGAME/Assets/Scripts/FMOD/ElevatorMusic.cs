@@ -27,6 +27,6 @@ public class ElevatorMusic : MonoBehaviour
 
     public void SetDoorOpen(bool isOpen)
     {
-        Music.setParameterByName("DoorOpen", isOpen ? 0f : 1f);
+        Music.setParameterByName("DoorOpen", isOpen ? 1f : 0f);
     }
 }
