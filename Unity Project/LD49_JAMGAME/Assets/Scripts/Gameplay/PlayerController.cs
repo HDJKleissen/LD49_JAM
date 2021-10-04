@@ -200,26 +200,33 @@ public class PlayerController : MonoBehaviour
             GameObject hitObject = hitOther.transform.gameObject;
             if (hitObject.tag != "Player")
             {
-                Renderer renderer;
-
-                if (objectsAndRenderers.ContainsKey(hitObject))
+                if (hitObject.tag == "NPC")
                 {
-                    renderer = objectsAndRenderers[hitObject];
+
                 }
                 else
                 {
-                    renderer = hitObject.GetComponent<Renderer>();
-                    objectsAndRenderers.Add(hitObject, renderer);
-                }
-                if (highlightedNonBugNonInteractable != null && highlightedNonBugNonInteractable != renderer)
-                {
-                    highlightedNonBugNonInteractable.material.color = nonBugNonInteractableDefaultColor;
-                }
+                    Renderer renderer;
 
-                StopHighlight();
-                renderer.material.color = Constants.HIGHLIGHT_COLOR;
-                highlightedNonBugNonInteractable = renderer;
-                clearHighlight = false;
+                    if (objectsAndRenderers.ContainsKey(hitObject))
+                    {
+                        renderer = objectsAndRenderers[hitObject];
+                    }
+                    else
+                    {
+                        renderer = hitObject.GetComponent<Renderer>();
+                        objectsAndRenderers.Add(hitObject, renderer);
+                    }
+                    if (highlightedNonBugNonInteractable != null && highlightedNonBugNonInteractable != renderer)
+                    {
+                        highlightedNonBugNonInteractable.material.color = nonBugNonInteractableDefaultColor;
+                    }
+
+                    StopHighlight();
+                    renderer.material.color = Constants.HIGHLIGHT_COLOR;
+                    highlightedNonBugNonInteractable = renderer;
+                    clearHighlight = false;
+                }
             }
         }
 
