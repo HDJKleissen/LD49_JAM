@@ -41,12 +41,15 @@ public class PlayerController : MonoBehaviour
     Color nonBugNonInteractableDefaultColor = Color.white;
     float scanTime = 0;
 
+    // Pat's FMOD event
+    private FMOD.Studio.EventInstance scanningSound;
+
     Dictionary<GameObject, Renderer> objectsAndRenderers = new Dictionary<GameObject, Renderer>();
 
     // Start is called before the first frame update
     void Start()
     {
-
+        scanningSound = FMODUnity.RuntimeManager.CreateInstance("event:/Fixing_Bug");
     }
 
 
@@ -235,7 +238,8 @@ public class PlayerController : MonoBehaviour
             {
                 if (scanningNonBug)
                 {
-                    GameManager.Instance.BugReportFailure(); 
+                    GameManager.Instance.BugReportFailure();
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Not_A_Bug");
                 }
                 else
                 {
@@ -266,6 +270,7 @@ public class PlayerController : MonoBehaviour
         scanningNonBug = true;
         scanTime = 0;
         maxScanTime = 1;
+        scanningSound.start();
     }
 
     void StartScan(IFixable bug)
@@ -275,6 +280,7 @@ public class PlayerController : MonoBehaviour
         scanningBug = bug;
         scanTime = 0;
         maxScanTime = 1;
+        scanningSound.start();
     }
 
     void StopScan()
@@ -285,6 +291,7 @@ public class PlayerController : MonoBehaviour
         scanTime = 0;
         maxScanTime = -1;
         GameManager.Instance.DisableScanUI();
+        scanningSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
     private void HandleJumping()
@@ -353,5 +360,10 @@ public class PlayerController : MonoBehaviour
 
             yield return null;
         } while (!CharacterController.isGrounded && CharacterController.collisionFlags != CollisionFlags.Above);
+    }
+
+    private void OnDestroy()
+    {
+        scanningSound.release();
     }
 }

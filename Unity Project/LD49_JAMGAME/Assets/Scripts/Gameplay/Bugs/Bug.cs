@@ -109,6 +109,7 @@ public abstract class Bug : MonoBehaviour, IFixable
         IsBugged = IsFixed;
         HandleToggle();
         GameManager.Instance.HandleBugToggleFix(this);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Bug_Fixed");
     }
 
     public void AttemptBehaviour()
