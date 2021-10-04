@@ -15,7 +15,7 @@ public class GameManager : UnitySingleton<GameManager>
     public int MaxBugFixFailures;
     public bool IsPaused = false, IsEnding = false;
 
-    int bugFixFailures = 0;
+    public int bugFixFailures = 0;
 
     public PlayerController player;
 
