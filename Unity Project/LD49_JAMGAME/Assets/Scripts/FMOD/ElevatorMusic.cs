@@ -40,4 +40,9 @@ public class ElevatorMusic : MonoBehaviour
     {
         Music.setParameterByName("DoorOpen", isOpen ? 1f : 0f);
     }
+
+    public void SetHouseMusic(bool isHouse)
+    {
+        Music.setParameterByName("House", isHouse ? 1f : 0f);
+    }
 }
