@@ -19,12 +19,15 @@ public class FootstepsManager : MonoBehaviour
     private bool PreviouslyTouchingGround;
     private float TimeTakenSinceStep;
 
+    PlayerController player;
+
 
     // Start is called before the first frame update
     void Start()
     {
         StepRandom = Random.Range(0f, 0.5f);
         PrevPos = transform.position;
+        player = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -38,7 +41,7 @@ public class FootstepsManager : MonoBehaviour
             MaterialCheck();
             PlayJumpOrLand(true);
         }
-        if (!PreviouslyTouchingGround && PlayerTouchingGround)
+        if (!PreviouslyTouchingGround && PlayerTouchingGround && player.jumpTime > 0.5f)
         {
             MaterialCheck();
             PlayJumpOrLand(false);
@@ -61,11 +64,7 @@ public class FootstepsManager : MonoBehaviour
 
     void GroundedCheck() 
     {
-        Physics.Raycast(transform.position, Vector3.down, out hit, RayDistance);
-        if (hit.collider)
-            PlayerTouchingGround = true;                                            
-        else                                                                        
-            PlayerTouchingGround = false;                                           
+        PlayerTouchingGround = player.CharacterController.isGrounded;
     }
 
     void MaterialCheck() 
