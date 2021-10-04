@@ -103,11 +103,12 @@ public class TwoSeperateObjectsBugIncorrect : MonoBehaviour, IHighlightable
     {
         if (highlighting && !parent.IsFixing)
         {
-            Renderer.material.color = highlightColor;
+            Renderer.material.SetColor("_EmissionColor", highlightColor);
+            Renderer.material.EnableKeyword("_EMISSION");
         }
         else
         {
-            Renderer.material.color = OriginalColor;
+            Renderer.material.DisableKeyword("_EMISSION");
         }
     }
 }

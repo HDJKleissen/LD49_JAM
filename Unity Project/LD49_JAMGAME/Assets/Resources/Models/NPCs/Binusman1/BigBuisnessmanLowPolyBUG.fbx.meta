@@ -3,7 +3,32 @@ guid: 6443805fe0ef05c4da898dd498eb7b66
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: low-poly
+    second: {fileID: 2100000, guid: 0ec4e394f9e058649b73e11128c1d072, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: male_elegantsuit01
+    second: {fileID: 2100000, guid: fab4f75f664a7004290a8c909751f396, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: proxy741
+    second: {fileID: 2100000, guid: cb84ea305b9035d43b09011bcdec666b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shoes04
+    second: {fileID: 2100000, guid: 1f7c61f6e6b5b8f4babd3e2b39584d7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: short04
+    second: {fileID: 2100000, guid: 3d7310616abf16d4a96c9fdd6cdc9d55, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

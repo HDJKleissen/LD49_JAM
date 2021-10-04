@@ -6,7 +6,37 @@ ModelImporter:
   - first:
       74: -203655887218126122
     second: mixamo.com
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyebrow009
+    second: {fileID: 2100000, guid: 3038ed5634a8bb048b64875b88205520, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: low-poly
+    second: {fileID: 2100000, guid: 4550ceb48b5774d4aa8da3b75eaa061f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: male_casualsuit03
+    second: {fileID: 2100000, guid: f409d9015744296428e9e8743c7047fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: male_generic
+    second: {fileID: 2100000, guid: 38aebc4008b56c94da29f04251a72ed9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shoes02
+    second: {fileID: 2100000, guid: fb53ac72525b83544965927e4ad3d9d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: short02
+    second: {fileID: 2100000, guid: 39b7eab6722416f40b320211898ee3ee, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
