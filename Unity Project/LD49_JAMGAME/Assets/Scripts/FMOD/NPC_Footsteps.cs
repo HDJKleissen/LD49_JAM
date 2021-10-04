@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class NPC_Footsteps : MonoBehaviour
 {
-    public void PlayFootstep(int isBug)
+    public bool isBug;
+
+    public void PlayFootstep()
     {
-        if (isBug == 1)
+        if (isBug)
         {
             FMODUnity.RuntimeManager.PlayOneShotAttached("event:/NPC_Footstep_Bug", gameObject);
         }
