@@ -99,8 +99,11 @@
 	</object>
 	<object class="MixerBusPanner" id="{7c3c82ac-3930-4e27-b618-6b6ff938f079}" />
 	<object class="MultiSound" id="{4cfb76b3-3e88-4953-b60e-788c65a757c6}">
+		<property name="isAsync">
+			<value>true</value>
+		</property>
 		<property name="length">
-			<value>8</value>
+			<value>1.1000000000000001</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{d081a065-75b3-41d7-806d-3b558d7b92b2}</destination>
