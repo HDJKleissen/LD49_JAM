@@ -6,6 +6,7 @@ public class ElevatorOcclusionTrigger : MonoBehaviour
 {
     private GameObject Player;
     private ElevatorMusic elevatorMusic;
+    public bool IsBottomElevator = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,13 +18,13 @@ public class ElevatorOcclusionTrigger : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject == Player)
+        if (other.gameObject == Player && !IsBottomElevator)
             elevatorMusic.SetDoorOpen(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == Player)
+        if (other.gameObject == Player && !IsBottomElevator)
             elevatorMusic.SetDoorOpen(false);
     }
 }
