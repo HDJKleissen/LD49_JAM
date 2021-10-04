@@ -68,7 +68,7 @@ public class EndingController : MonoBehaviour
 
         MainCamera.transform.position -= Background.transform.forward;
 
-        panelSize = (new Vector3((topRight.x - topLeft.x) / 3, 0.1f, (topLeft.y - bottomLeft.y) / 3) * 0.95f) / 10;
+        panelSize = (new Vector3((topRight.x - topLeft.x), 0.1f, (topLeft.y - bottomLeft.y)) * 0.95f) / 10;
         StartCoroutine(SpawnStuff());
     }
 
@@ -84,13 +84,13 @@ public class EndingController : MonoBehaviour
 
     IEnumerator SpawnStuff()
     {
-        List<int> allowedYValues = new List<int> { 0, 1, 2 };
+        List<int> allowedYValues = new List<int> { 1 };
         int BugsAmount = Bugs.Count;
         for (int i = 0; i < BugsAmount; i++)
         {
             Camera newCamera = new GameObject().AddComponent<Camera>();
             newCamera.gameObject.transform.localScale = new Vector3(1, -1, 1);
-            RenderTexture newTexture = new RenderTexture(1600, 900, 16, RenderTextureFormat.ARGB64);
+            RenderTexture newTexture = new RenderTexture(800, 450, 16, RenderTextureFormat.ARGB32);
 
             GameObject target = Instantiate(PanelPrefab);
 
@@ -108,7 +108,7 @@ public class EndingController : MonoBehaviour
             BugShowCamera moveScript = target.GetComponent<BugShowCamera>();
             moveScript.Camera = newCamera;
             moveScript.EndingController = this;
-            moveScript.MoveSpeed = 3 * ((float)BugsAmount / 10);
+            moveScript.MoveSpeed = 9 * ((float)BugsAmount / 10);
             moveScript.Bug = pickedBug;
             //moveScript.startPosition = topLeft + baseOffset + ((bottomLeft - topLeft) / (CameraAmountVertical)) * usedYValue;
             Renderer targetRenderer = target.GetComponent<Renderer>();
@@ -119,7 +119,7 @@ public class EndingController : MonoBehaviour
             newCamera.targetTexture = newTexture;
             cameras.Add(newCamera, newTexture);
             panelsCreated++;
-            yield return new WaitForSeconds(0.75f / ((float)BugsAmount / 10));
+            yield return new WaitForSeconds(2.25f / ((float)BugsAmount / 10));
         }
     }
 

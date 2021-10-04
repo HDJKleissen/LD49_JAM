@@ -65,34 +65,28 @@ public class AudioBug : Bug, IHighlightable
 
     public void ToggleHighlight(bool highlighting)
     {
-        Debug.Log("Toggling radio");
         if (highlighting && !IsFixing)
         {
-            Debug.Log("highlightin");
             if (tag == "HasEmissionMap")
             {
-                Debug.Log("hasemishmap");
                 Renderer.materials[0].SetTexture("_EmissionMap", null);
             }
             else
             {
                 Renderer.materials[0].EnableKeyword("_EMISSION");
             }
-            Debug.Log("setting color");
             Renderer.materials[0].SetColor("_EmissionColor", highlightColor);
         }
         else 
         {
             if (tag == "HasEmissionMap")
             {
-                Debug.Log("hasemish toggle");
                 Renderer.materials[0].SetTexture("_EmissionMap", originalEmissionMap);
             }
             else
             {
                 Renderer.materials[0].DisableKeyword("_EMISSION");
             }
-            Debug.Log("color toggleback");
             Renderer.materials[0].SetColor("_EmissionColor", OriginalColor);
         }
     }

@@ -19,6 +19,7 @@ public class NPC : MonoBehaviour, IHighlightable
     static string BOOL_WALKING = "Walking";
     static string BOOL_TALKING = "Talking";
     static string BOOL_TPOSE = "DoTPose";
+    NPCBug npcbug;
 
     Color originalColor = Color.white;
     public Color OriginalColor { get => originalColor; set => originalColor = value; }
@@ -28,6 +29,7 @@ public class NPC : MonoBehaviour, IHighlightable
     // Start is called before the first frame update
     void Start()
     {
+        npcbug = GetComponent<NPCBug>();
         Parts = GetComponentsInChildren<Renderer>();
         foreach (Renderer renderer in Parts)
         {
@@ -75,15 +77,18 @@ public class NPC : MonoBehaviour, IHighlightable
 
     public void ToggleHighlight(bool highlighting)
     {
-        foreach(Renderer renderer in Parts)
+        if (npcbug.IsBugged && !npcbug.IsFixed)
         {
-            if (highlighting)
+            foreach (Renderer renderer in Parts)
             {
-                renderer.materials[0].EnableKeyword("_EMISSION");
-            }
-            else
-            {
-                renderer.materials[0].DisableKeyword("_EMISSION");
+                if (highlighting)
+                {
+                    renderer.materials[0].EnableKeyword("_EMISSION");
+                }
+                else
+                {
+                    renderer.materials[0].DisableKeyword("_EMISSION");
+                }
             }
         }
     }

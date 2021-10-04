@@ -65,11 +65,11 @@ public class BugShowCamera : MonoBehaviour
         Camera.transform.LookAt(Bug.FixingParticlesLocation);
         if (rotateRight)
         {
-            Camera.transform.Translate(Vector3.right * 2 * Time.deltaTime);
+            Camera.transform.Translate(Vector3.right * 1.2f * Time.deltaTime);
         }
         else
         {
-            Camera.transform.Translate(Vector3.left * 2 * Time.deltaTime);
+            Camera.transform.Translate(Vector3.left * 1.2f * Time.deltaTime);
         }
     }
 

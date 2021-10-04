@@ -25,7 +25,7 @@ public class DanceFloorTile : MonoBehaviour
             Color randomColor = RandomColor();
             tileMaterial.SetColor("_EmissionColor", randomColor);
             tileLight.color = randomColor;
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.4348f); // 138bpm
         }
     }
 

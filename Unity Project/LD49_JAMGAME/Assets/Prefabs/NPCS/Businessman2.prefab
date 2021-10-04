@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanSitAndTalk: 0
-  sitting: 0
+  sitting: 1
   walking: 0
   talking: 0
   tPose: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411c6b1e07f06704ba9e4928cdf641bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FixingParticlesLocation: {fileID: 5013508710234133692}
+  FixingParticlesLocation: {fileID: 7359998698732893152}
   FixTimeCircleLocation: {fileID: 0}
   scanTime: 0
   isBugged: 0
@@ -253,10 +253,5 @@ GameObject:
 --- !u!4 &6908612096189667670 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5ddf797cb75d20549ba148aa095831f4, type: 3}
-  m_PrefabInstance: {fileID: 6371163439257583293}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &5013508710234133692 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2159868545183410689, guid: 5ddf797cb75d20549ba148aa095831f4, type: 3}
   m_PrefabInstance: {fileID: 6371163439257583293}
   m_PrefabAsset: {fileID: 0}

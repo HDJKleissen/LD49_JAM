@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411c6b1e07f06704ba9e4928cdf641bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FixingParticlesLocation: {fileID: 5202697787585006160}
+  FixingParticlesLocation: {fileID: 1751715493712320254}
   FixTimeCircleLocation: {fileID: 0}
   scanTime: 0
   isBugged: 0
@@ -253,10 +253,5 @@ GameObject:
 --- !u!4 &5926859775852152762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9fd5550f35d401245ab4272b999f98c5, type: 3}
-  m_PrefabInstance: {fileID: 6181989752108310609}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &5202697787585006160 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2159868545183410689, guid: 9fd5550f35d401245ab4272b999f98c5, type: 3}
   m_PrefabInstance: {fileID: 6181989752108310609}
   m_PrefabAsset: {fileID: 0}

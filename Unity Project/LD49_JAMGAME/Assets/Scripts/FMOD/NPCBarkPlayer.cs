@@ -32,14 +32,14 @@ public class NPCBarkPlayer : MonoBehaviour
         BuggedVOLine.getPlaybackState(out BuggedVOLinePs);
         if(VOLinePs == FMOD.Studio.PLAYBACK_STATE.PLAYING || BuggedVOLinePs == FMOD.Studio.PLAYBACK_STATE.PLAYING )
         {
-            if (NPCBug == null || !NPCBug.IsBugged || NPCBug.IsFixed)
+            if (NPCBug == null || !NPCBug.AnimationBugged || NPCBug.IsFixed)
             {
                 NPC.SetTalking(true);
             }
         }
         else
         {
-            if (NPCBug == null || !NPCBug.IsBugged || NPCBug.IsFixed)
+            if (NPCBug == null || !NPCBug.AnimationBugged || NPCBug.IsFixed)
             {
                 NPC.SetTalking(false);
             }

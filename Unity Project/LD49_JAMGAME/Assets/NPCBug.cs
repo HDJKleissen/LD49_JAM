@@ -8,9 +8,14 @@ public class NPCBug : Bug
     public NPCBarkPlayer NPCAudio;
     public NPCState IncorrectBool, CorrectBool;
     public bool AudioBugged = false;
+    public bool AnimationBugged;
 
     public override void DoStart()
     {
+        if (IsBugged && !AudioBugged)
+        {
+            AnimationBugged = true;
+        }
         if (NPC == null)
         {
             NPC = GetComponent<NPC>();
@@ -21,7 +26,7 @@ public class NPCBug : Bug
         }
         NPCAudio.isBug = AudioBugged;
 
-        if (IsBugged && !IsFixed)
+        if (IsBugged && !IsFixed && AnimationBugged)
         {
             if(IncorrectBool == NPCState.BOOL_IDLE)
             {
@@ -60,21 +65,23 @@ public class NPCBug : Bug
     {
         if (IsFixed)
         {
-            if(CorrectBool == NPCState.BOOL_IDLE)
+            if (AnimationBugged)
             {
-                NPC.SetSitting(false);
-                NPC.SetWalking(false);
-                NPC.SetTalking(false);
-                NPC.SetTPose(false);
+                if (CorrectBool == NPCState.BOOL_IDLE)
+                {
+                    NPC.SetSitting(false);
+                    NPC.SetWalking(false);
+                    NPC.SetTalking(false);
+                    NPC.SetTPose(false);
+                }
+                else
+                {
+                    NPC.SetSitting(CorrectBool == NPCState.BOOL_SITTING);
+                    NPC.SetWalking(CorrectBool == NPCState.BOOL_WALKING);
+                    NPC.SetTalking(CorrectBool == NPCState.BOOL_TALKING);
+                    NPC.SetTPose(CorrectBool == NPCState.BOOL_TPOSE);
+                }
             }
-            else
-            {
-                NPC.SetSitting(CorrectBool == NPCState.BOOL_SITTING);
-                NPC.SetWalking(CorrectBool == NPCState.BOOL_WALKING);
-                NPC.SetTalking(CorrectBool == NPCState.BOOL_TALKING);
-                NPC.SetTPose(CorrectBool == NPCState.BOOL_TPOSE);
-            }
-
             NPCAudio.isBug = false;
         }
     }
