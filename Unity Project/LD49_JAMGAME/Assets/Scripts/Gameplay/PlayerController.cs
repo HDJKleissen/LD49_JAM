@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         scanningSound = FMODUnity.RuntimeManager.CreateInstance("event:/Fixing_Bug");
-        GameManager.Instance.ShowHint("Note; you came in through the elevator. The devs haven't had time to implement the start yet. Sorry. Also, you can interact with blue highlighted objects by pressing E", 3);
+        GameManager.Instance.ShowHint("Note; you came in through the elevator. The devs haven't had time to implement the start yet. Sorry. Also, interactive objects will be highlighted blue.", 10);
     }
 
 
