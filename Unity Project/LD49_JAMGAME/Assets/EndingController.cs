@@ -84,10 +84,29 @@ public class EndingController : MonoBehaviour
 
     IEnumerator SpawnStuff()
     {
+        bool spawnedElevatorCamera = false;
         List<int> allowedYValues = new List<int> { 1 };
         int BugsAmount = Bugs.Count;
         for (int i = 0; i < BugsAmount; i++)
         {
+            Bug pickedBug = Bugs[Random.Range(0, Bugs.Count)];
+            Bugs.Remove(pickedBug);
+            if(pickedBug is AudioBug)
+            {
+                AudioBug aB = pickedBug as AudioBug;
+                if(aB.elevatorMusic != null)
+                {
+                    if (!spawnedElevatorCamera)
+                    {
+                        spawnedElevatorCamera = true;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+
             Camera newCamera = new GameObject().AddComponent<Camera>();
             newCamera.gameObject.transform.localScale = new Vector3(1, -1, 1);
             RenderTexture newTexture = new RenderTexture(800, 450, 16, RenderTextureFormat.ARGB32);
@@ -102,8 +121,6 @@ public class EndingController : MonoBehaviour
             target.transform.position = targetPosition;
             target.transform.localScale = panelSize;
 
-            Bug pickedBug = Bugs[Random.Range(0, Bugs.Count)];
-            Bugs.Remove(pickedBug);
 
             BugShowCamera moveScript = target.GetComponent<BugShowCamera>();
             moveScript.Camera = newCamera;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioBug : Bug, IHighlightable
 {
-    [SerializeField] ElevatorMusic elevatorMusic;
+    public ElevatorMusic elevatorMusic;
 
     [SerializeField] RadioMusic radioMusic;
 
@@ -35,6 +35,10 @@ public class AudioBug : Bug, IHighlightable
 
     public override void DoUpdate()
     {
+        if (IsFixed != GameManager.Instance.ElevatorMusicIsFixed)
+        {
+            IsFixed = GameManager.Instance.ElevatorMusicIsFixed;
+        }
     }
 
     public override void HandleAttemptBehaviour()
@@ -55,6 +59,7 @@ public class AudioBug : Bug, IHighlightable
         // Switch audio file/change FMOD values with:
         if (elevatorMusic != null)
         {
+            GameManager.Instance.ElevatorMusicIsFixed = IsFixed;
             elevatorMusic.SetAudioGlitchyness(IsFixed);
         }
         else if (radioMusic != null)
