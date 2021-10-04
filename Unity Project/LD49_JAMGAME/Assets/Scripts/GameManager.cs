@@ -15,6 +15,7 @@ public class GameManager : UnitySingleton<GameManager>
 
     int bugFixFailures = 0;
 
+    public PlayerController player;
 
     static float _mouseSensitivity = -1f;
     public static float MouseSensitivity {

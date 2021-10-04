@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Interactable : MonoBehaviour, IHighlightable
+public class InteractableToBug : MonoBehaviour, IHighlightable
 {
     public Bug LinkedBug;
     public Renderer ObjectRenderer;
@@ -11,7 +11,7 @@ public class Interactable : MonoBehaviour, IHighlightable
     Color originalColor = Color.white;
     public Color OriginalColor { get => originalColor; set => originalColor = value; }
 
-    public Color highlightColor => Constants.HIGHLIGHT_COLOR;
+    public Color highlightColor => Constants.INTERACTABLE_COLOR;
 
     // Start is called before the first frame update
     void Start()
@@ -33,12 +33,18 @@ public class Interactable : MonoBehaviour, IHighlightable
     {
         if (highlighting)
         {
-            ObjectRenderer.materials[0].SetColor("_EmissionColor", highlightColor);
-            ObjectRenderer.materials[0].EnableKeyword("_EMISSION");
+            foreach(Material mat in ObjectRenderer.materials)
+            {
+                mat.SetColor("_EmissionColor", highlightColor);
+                mat.EnableKeyword("_EMISSION");
+            }
         }
         else
         {
-            ObjectRenderer.materials[0].DisableKeyword("_EMISSION");
+            foreach (Material mat in ObjectRenderer.materials)
+            {
+                ObjectRenderer.materials[0].DisableKeyword("_EMISSION");
+            }
         }
     }
 }
