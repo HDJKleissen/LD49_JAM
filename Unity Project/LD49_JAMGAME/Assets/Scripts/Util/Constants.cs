@@ -7,5 +7,5 @@ using UnityEngine;
 
 public static class Constants
 {
-    public static Color HIGHLIGHT_COLOR = Color.yellow;
+    public static Color HIGHLIGHT_COLOR = new Color32(255,155,0,128);
 }

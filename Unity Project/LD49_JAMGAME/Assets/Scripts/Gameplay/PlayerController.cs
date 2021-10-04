@@ -206,7 +206,16 @@ public class PlayerController : MonoBehaviour
             {
                 if (hitObject.tag == "NPC")
                 {
-
+                    StopHighlight();
+                    IHighlightable highlightable = hitObject.GetComponent<IHighlightable>();
+                    if(highlightable == null)
+                    {
+                        highlightable = hitObject.GetComponentInParent<IHighlightable>();
+                    }
+                    Debug.Log(highlightable);
+                    highlightedObject = highlightable;
+                    highlightedObject.ToggleHighlight(true);
+                    clearHighlight = false;
                 }
                 else
                 {
@@ -219,15 +228,27 @@ public class PlayerController : MonoBehaviour
                     else
                     {
                         renderer = hitObject.GetComponent<Renderer>();
+                        if(renderer == null)
+                        {
+                            renderer = hitObject.GetComponentInParent<Renderer>();
+                        }
                         objectsAndRenderers.Add(hitObject, renderer);
                     }
                     if (highlightedNonBugNonInteractable != null && highlightedNonBugNonInteractable != renderer)
                     {
-                        highlightedNonBugNonInteractable.material.color = nonBugNonInteractableDefaultColor;
+                        if (highlightedNonBugNonInteractable.tag != "HasLight")
+                        {
+                            highlightedNonBugNonInteractable.material.DisableKeyword("_EMISSION");
+                        }
+                        else
+                        {
+                            highlightedNonBugNonInteractable.material.SetColor("_EmissionColor", Color.white);
+                        }
                     }
 
                     StopHighlight();
-                    renderer.material.color = Constants.HIGHLIGHT_COLOR;
+                    renderer.material.SetColor("_EmissionColor", Constants.HIGHLIGHT_COLOR);
+                    renderer.material.EnableKeyword("_EMISSION");
                     highlightedNonBugNonInteractable = renderer;
                     clearHighlight = false;
                 }
@@ -263,12 +284,18 @@ public class PlayerController : MonoBehaviour
         if (highlightedNonBugNonInteractable != null)
         {
             Debug.Log("Clearing highnonbugnonint");
-            highlightedNonBugNonInteractable.material.color = nonBugNonInteractableDefaultColor;
+            if (highlightedNonBugNonInteractable.tag != "HasLight")
+            {
+                highlightedNonBugNonInteractable.material.DisableKeyword("_EMISSION");
+            }
+            else
+            {
+                highlightedNonBugNonInteractable.material.SetColor("_EmissionColor", Color.white);
+            }
         }
         highlightedObject?.ToggleHighlight(false);
         highlightedObject = null;
         highlightedNonBugNonInteractable = null;
-        nonBugNonInteractableDefaultColor = Color.white;
     }
 
     void StartScan()
