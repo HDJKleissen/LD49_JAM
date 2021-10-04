@@ -62,9 +62,9 @@ public class FootstepsManager : MonoBehaviour
 
     }
 
-    void GroundedCheck() 
+    void GroundedCheck()
     {
-        PlayerTouchingGround = player.CharacterController.isGrounded;
+        PlayerTouchingGround = Physics.CheckCapsule(transform.position, transform.position - transform.up * RayDistance, 0.5f);
     }
 
     void MaterialCheck() 
