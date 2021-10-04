@@ -212,7 +212,6 @@ public class PlayerController : MonoBehaviour
                     {
                         highlightable = hitObject.GetComponentInParent<IHighlightable>();
                     }
-                    Debug.Log(highlightable);
                     highlightedObject = highlightable;
                     highlightedObject.ToggleHighlight(true);
                     clearHighlight = false;
@@ -283,7 +282,6 @@ public class PlayerController : MonoBehaviour
     {
         if (highlightedNonBugNonInteractable != null)
         {
-            Debug.Log("Clearing highnonbugnonint");
             if (highlightedNonBugNonInteractable.tag != "HasLight")
             {
                 highlightedNonBugNonInteractable.material.DisableKeyword("_EMISSION");
