@@ -1793,23 +1793,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &752374956 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5083974005385220801, guid: 9bf0626f7440be04c84d5c8ba5da527f, type: 3}
-  m_PrefabInstance: {fileID: 1109077135}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &752374957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752374956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b17458dac6f04f008a366a4afd418f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &763747179
 GameObject:
   m_ObjectHideFlags: 0
@@ -2621,14 +2604,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Employee1 Idle
       objectReference: {fileID: 0}
-    - target: {fileID: 5083974005385220801, guid: 9bf0626f7440be04c84d5c8ba5da527f, type: 3}
-      propertyPath: m_TagString
-      value: NPC
-      objectReference: {fileID: 0}
-    - target: {fileID: 5353810987523809970, guid: 9bf0626f7440be04c84d5c8ba5da527f, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 22100000, guid: 6dc4b9584198e59499ae822963612209, type: 2}
     - target: {fileID: 5604228115841550459, guid: 9bf0626f7440be04c84d5c8ba5da527f, type: 3}
       propertyPath: m_RootOrder
       value: 0
