@@ -8,6 +8,7 @@ public class NPCBarkPlayer : MonoBehaviour
     [SerializeField] float LongestTimeBetweenBarks = 25f;
     public bool isBug;
     private NPC NPC;
+    private NPCBug NPCBug;
     private FMOD.Studio.EventInstance VOLine;
     private FMOD.Studio.EventInstance BuggedVOLine;
     private FMOD.Studio.PLAYBACK_STATE VOLinePs;
@@ -20,6 +21,7 @@ public class NPCBarkPlayer : MonoBehaviour
         VOLine = FMODUnity.RuntimeManager.CreateInstance("event:/NPC_Bark");
         BuggedVOLine = FMODUnity.RuntimeManager.CreateInstance("event:/NPC_Bark_Bug");
         NPC = GetComponent<NPC>();
+        NPCBug = GetComponent<NPCBug>();
         Invoke("PlayBark", Random.Range(ShortestTimeBetweenBarks, LongestTimeBetweenBarks));
     }
 
@@ -30,11 +32,17 @@ public class NPCBarkPlayer : MonoBehaviour
         BuggedVOLine.getPlaybackState(out BuggedVOLinePs);
         if(VOLinePs == FMOD.Studio.PLAYBACK_STATE.PLAYING || BuggedVOLinePs == FMOD.Studio.PLAYBACK_STATE.PLAYING )
         {
-            NPC.SetTalking(true);
+            if (NPCBug == null || !NPCBug.IsBugged || NPCBug.IsFixed)
+            {
+                NPC.SetTalking(true);
+            }
         }
         else
         {
-            NPC.SetTalking(false);
+            if (NPCBug == null || !NPCBug.IsBugged || NPCBug.IsFixed)
+            {
+                NPC.SetTalking(false);
+            }
         }
     }
 

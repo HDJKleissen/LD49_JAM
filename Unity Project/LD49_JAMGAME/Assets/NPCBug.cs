@@ -11,7 +11,6 @@ public class NPCBug : Bug
 
     public override void DoStart()
     {
-        Debug.Log("starting???");
         if (NPC == null)
         {
             NPC = GetComponent<NPC>();
@@ -24,7 +23,6 @@ public class NPCBug : Bug
 
         if (IsBugged && !IsFixed)
         {
-            Debug.Log(IncorrectBool == NPCState.BOOL_SITTING);
             if(IncorrectBool == NPCState.BOOL_IDLE)
             {
                 NPC.SetSitting(false);

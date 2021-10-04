@@ -1,5 +1,47 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!64 &7773688949882738928
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5623080331943475368}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7387706064836869012, guid: 325393bef7bb2064f9e786a0fe8ddf56, type: 3}
+--- !u!64 &5957363488523253668
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480974410118171711}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3442895953241078886, guid: 6022e44451bcc7a43bf85f73fc0ce650, type: 3}
+--- !u!64 &8646693568334363395
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5160985892459716020}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6317106008045385693, guid: 833e85c07cab2464e842b9b34151a2f6, type: 3}
 --- !u!1 &9128367501203365175
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +204,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f17c247d14de9d64e9dbbd05789c224d, type: 3}
+--- !u!1 &5623080331943475368 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4890422388338031091, guid: f17c247d14de9d64e9dbbd05789c224d, type: 3}
+  m_PrefabInstance: {fileID: 997393958851608923}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1501919346475520473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -171,7 +218,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7321018457402490540, guid: c054714ef2bcafe4aa077adca6f39794, type: 3}
       propertyPath: m_Name
-      value: Cubicle
+      value: Cubicle Desk Chair Lamp
       objectReference: {fileID: 0}
     - target: {fileID: 7985634012968117270, guid: c054714ef2bcafe4aa077adca6f39794, type: 3}
       propertyPath: m_RootOrder
@@ -305,6 +352,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 798c70547540add40b36bf4afc16a4d5, type: 3}
+--- !u!1 &1480974410118171711 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6130630163301581579, guid: 798c70547540add40b36bf4afc16a4d5, type: 3}
+  m_PrefabInstance: {fileID: 4726850823893241652}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2289705261200955013 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6800311237450308017, guid: 798c70547540add40b36bf4afc16a4d5, type: 3}
@@ -379,3 +431,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4b0e912007d2a644b0ed02db13436b8, type: 3}
+--- !u!1 &5160985892459716020 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1785374782833588787, guid: d4b0e912007d2a644b0ed02db13436b8, type: 3}
+  m_PrefabInstance: {fileID: 6870643330206754695}
+  m_PrefabAsset: {fileID: 0}
