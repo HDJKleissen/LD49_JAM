@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{7096fe65-30ce-462f-bf18-57a291b9f74a}">
+		<property name="assetPath">
+			<value>NPC Footsteps/Leather_Footstep_05.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.38966666666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b0ad27c8-8d7e-4f2a-b7b8-3dc790281cdc}</destination>
+		</relationship>
+	</object>
+</objects>

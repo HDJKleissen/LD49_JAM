@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="Snapshot" id="{47753009-6c80-4a3c-8ead-eac4b95fa3ec}">
+		<property name="name">
+			<value>PauseMenu</value>
+		</property>
+		<relationship name="mixer">
+			<destination>{20d4d1b4-b512-4a12-8668-c06a28b3a5d4}</destination>
+		</relationship>
+		<relationship name="automatableProperties">
+			<destination>{54963c04-1028-4b56-886d-b4d3522c58d2}</destination>
+		</relationship>
+		<relationship name="markerTracks">
+			<destination>{3b42deb9-9b15-498e-adf1-08654ffd7d38}</destination>
+		</relationship>
+		<relationship name="timeline">
+			<destination>{983a57e2-c7a8-4090-906c-6f6ed23703f9}</destination>
+		</relationship>
+		<relationship name="snapshotMasterTrack">
+			<destination>{5ee8fcbc-e099-441a-81d1-734ce343734a}</destination>
+		</relationship>
+		<relationship name="snapshotProperties">
+			<destination>{68669fff-2610-419c-a29f-75f82980e46b}</destination>
+		</relationship>
+		<relationship name="snapshotTracks">
+			<destination>{a173314f-261b-46c5-a1a0-646d98dadcbd}</destination>
+		</relationship>
+	</object>
+	<object class="EventAutomatableProperties" id="{54963c04-1028-4b56-886d-b4d3522c58d2}">
+		<relationship name="modulators">
+			<destination>{0d6c1aa1-947f-4822-b895-3bc830cbfb0e}</destination>
+		</relationship>
+	</object>
+	<object class="MarkerTrack" id="{3b42deb9-9b15-498e-adf1-08654ffd7d38}" />
+	<object class="Timeline" id="{983a57e2-c7a8-4090-906c-6f6ed23703f9}" />
+	<object class="SnapshotMasterTrack" id="{5ee8fcbc-e099-441a-81d1-734ce343734a}" />
+	<object class="SnapshotProperty" id="{68669fff-2610-419c-a29f-75f82980e46b}">
+		<property name="propertyName">
+			<value>cutoff</value>
+		</property>
+		<property name="value">
+			<value>900</value>
+		</property>
+		<relationship name="automatableObject">
+			<destination>{4d7e025a-7df0-49f4-b4bd-149984b6b959}</destination>
+		</relationship>
+	</object>
+	<object class="SnapshotTrack" id="{a173314f-261b-46c5-a1a0-646d98dadcbd}">
+		<relationship name="mixerStrip">
+			<destination>{5e4436b4-0a80-4f8c-a02b-6b62fabecb73}</destination>
+		</relationship>
+	</object>
+	<object class="ADSRModulator" id="{0d6c1aa1-947f-4822-b895-3bc830cbfb0e}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>snapshotIntensity</value>
+		</property>
+		<property name="attackTime">
+			<value>340</value>
+		</property>
+		<property name="peakValue">
+			<value>100</value>
+		</property>
+		<property name="sustainValue">
+			<value>100</value>
+		</property>
+		<property name="releaseTime">
+			<value>500</value>
+		</property>
+	</object>
+</objects>
