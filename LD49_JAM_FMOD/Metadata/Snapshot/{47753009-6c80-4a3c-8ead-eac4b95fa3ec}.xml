@@ -39,7 +39,7 @@
 			<value>cutoff</value>
 		</property>
 		<property name="value">
-			<value>1600</value>
+			<value>900</value>
 		</property>
 		<relationship name="automatableObject">
 			<destination>{4d7e025a-7df0-49f4-b4bd-149984b6b959}</destination>
@@ -54,11 +54,17 @@
 		<property name="nameOfPropertyBeingModulated">
 			<value>snapshotIntensity</value>
 		</property>
+		<property name="attackTime">
+			<value>340</value>
+		</property>
 		<property name="peakValue">
 			<value>100</value>
 		</property>
 		<property name="sustainValue">
 			<value>100</value>
+		</property>
+		<property name="releaseTime">
+			<value>500</value>
 		</property>
 	</object>
 </objects>

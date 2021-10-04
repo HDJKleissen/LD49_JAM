@@ -8,11 +8,15 @@ public class PauseMenu : MonoBehaviour
 
     bool isPaused = false;
 
+    FMOD.Studio.EventInstance pauseSnapshot;
+
+
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        pauseSnapshot = FMODUnity.RuntimeManager.CreateInstance("snapshot:/PauseMenu");
     }
 
     // Update is called once per frame
@@ -34,12 +38,19 @@ public class PauseMenu : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             Time.timeScale = 0;
+            pauseSnapshot.start();
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             Time.timeScale = 1;
+            pauseSnapshot.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
+    }
+
+    private void OnDestroy()
+    {
+        pauseSnapshot.release();
     }
 }
