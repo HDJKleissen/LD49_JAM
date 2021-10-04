@@ -62,14 +62,14 @@ ModelImporter:
       - time: 0.28125
         functionName: PlayFootstep
         data: 
-        objectReferenceParameter: {instanceID: 0}
+        objectReferenceParameter: {fileID: 11500000, guid: 8b17458dac6f04f008a366a4afd418f0, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.7526042
         functionName: PlayFootstep
         data: 
-        objectReferenceParameter: {instanceID: 0}
+        objectReferenceParameter: {fileID: 11500000, guid: 8b17458dac6f04f008a366a4afd418f0, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
