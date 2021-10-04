@@ -8,13 +8,15 @@ public class Elevator : MonoBehaviour
     public Animator animator;
     public float MoveSpeed;
 
+    private ElevatorMusic elevatorMusic;
+
     bool isOpen = false;
     bool isDown = false;
     bool movingDown = false, movingUp = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        elevatorMusic = GetComponent<ElevatorMusic>();
     }
 
     // Update is called once per frame
@@ -53,10 +55,12 @@ public class Elevator : MonoBehaviour
         if(!isOpen)
         {
             OpenDoors();
+            elevatorMusic.SetDoorOpen(isOpen);
         }
         else
         {
             CloseDoors();
+            elevatorMusic.SetDoorOpen(isOpen);
         }
     }
 
