@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour, IHighlightable
 {
-    [SerializeField] bool sitting, walking, talking, tPose;
+    public bool CanSitAndTalk = true;
+    public bool sitting, walking, talking, tPose;
     public Animator Animator;
     public Renderer[] Parts;
 
@@ -24,7 +25,7 @@ public class NPC : MonoBehaviour, IHighlightable
         Parts = GetComponentsInChildren<Renderer>();
         foreach (Renderer renderer in Parts)
         {
-            renderer.material.SetColor("_EmissionColor", highlightColor);
+            renderer.materials[0].SetColor("_EmissionColor", highlightColor);
         }
         SetAnimatorParams();
     }
@@ -44,8 +45,11 @@ public class NPC : MonoBehaviour, IHighlightable
 
     public void SetTalking(bool newTalking)
     {
-        talking = newTalking;
-        SetAnimatorParams();
+        if (CanSitAndTalk || !sitting)
+        {
+            talking = newTalking;
+            SetAnimatorParams();
+        }
     }
     public void SetWalking(bool newWalking)
     {
@@ -69,11 +73,11 @@ public class NPC : MonoBehaviour, IHighlightable
         {
             if (highlighting)
             {
-                renderer.material.EnableKeyword("_EMISSION");
+                renderer.materials[0].EnableKeyword("_EMISSION");
             }
             else
             {
-                renderer.material.DisableKeyword("_EMISSION");
+                renderer.materials[0].DisableKeyword("_EMISSION");
             }
         }
     }

@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Carpet
   - NPC
-  - HasLight
+  - HasEmissionMap
   layers:
   - Default
   - TransparentFX

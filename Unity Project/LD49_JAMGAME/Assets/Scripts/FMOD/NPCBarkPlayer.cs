@@ -40,19 +40,21 @@ public class NPCBarkPlayer : MonoBehaviour
 
     void PlayBark()
     {
-        
-        if (isBug)
+        if (NPC.CanSitAndTalk || !NPC.sitting)
         {
-            BuggedVOLine.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
-            BuggedVOLine.start();
-        }
-        else
-        {
-            VOLine.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
-            VOLine.start();
-        }
+            if (isBug)
+            {
+                BuggedVOLine.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+                BuggedVOLine.start();
+            }
+            else
+            {
+                VOLine.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+                VOLine.start();
+            }
 
-        Invoke("PlayBark", Random.Range(ShortestTimeBetweenBarks, LongestTimeBetweenBarks));
+            Invoke("PlayBark", Random.Range(ShortestTimeBetweenBarks, LongestTimeBetweenBarks));
+        }
     }
 
     private void OnDestroy()
