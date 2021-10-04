@@ -24337,6 +24337,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 7.5689135
       objectReference: {fileID: 0}
+    - target: {fileID: 4294331349757309256, guid: 92ab4f1c76b330a49a856b213efb840d, type: 3}
+      propertyPath: IsBottomElevator
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6256325220744868486, guid: 92ab4f1c76b330a49a856b213efb840d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4
@@ -38005,7 +38009,7 @@ MonoBehaviour:
   LinkedElevator: {fileID: 1319383764}
   animator: {fileID: 1217762593}
   MoveSpeed: 0
-  elevatorMusic: {fileID: 0}
+  elevatorMusic: {fileID: 1964406486}
 --- !u!114 &1964406486
 MonoBehaviour:
   m_ObjectHideFlags: 0

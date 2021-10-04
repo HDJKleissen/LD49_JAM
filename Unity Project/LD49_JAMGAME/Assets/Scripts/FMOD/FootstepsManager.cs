@@ -84,7 +84,7 @@ public class FootstepsManager : MonoBehaviour
 
     void PlayFootstep() 
     {
-        if (PlayerTouchingGround)
+        if (PlayerTouchingGround && player.CharacterController.enabled)
         {
             FMOD.Studio.EventInstance Footstep = FMODUnity.RuntimeManager.CreateInstance(FootstepsEventPath);        
             FMODUnity.RuntimeManager.AttachInstanceToGameObject(Footstep, transform, GetComponent<Rigidbody>());     

@@ -84,7 +84,7 @@ public class GameManager : UnitySingleton<GameManager>
         gameUI.AddFailureImage();
         if (bugFixFailures >= MaxBugFixFailures)
         {
-            Debug.Log("YOU LOSE");
+            StartEnding();
             FMODUnity.RuntimeManager.PlayOneShot("event:/You_Are_Fired");
         }
     }
