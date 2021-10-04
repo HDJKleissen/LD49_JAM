@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour, IHighlightable
 {
+    public static Dictionary<NPCState, string> EnumToBoolname = new Dictionary<NPCState, string> {
+        { NPCState.BOOL_SITTING, BOOL_SITTING },
+        { NPCState.BOOL_WALKING, BOOL_WALKING },
+        { NPCState.BOOL_TALKING, BOOL_TALKING },
+        { NPCState.BOOL_TPOSE, BOOL_TPOSE }
+    };
     public bool CanSitAndTalk = true;
     public bool sitting, walking, talking, tPose;
     public Animator Animator;
     public Renderer[] Parts;
 
-    string BOOL_SITTING = "Sitting";
-    string BOOL_WALKING = "Walking";
-    string BOOL_TALKING = "Talking";
-    string BOOL_TPOSE = "DoTPose";
+    static string BOOL_SITTING = "Sitting";
+    static string BOOL_WALKING = "Walking";
+    static string BOOL_TALKING = "Talking";
+    static string BOOL_TPOSE = "DoTPose";
 
     Color originalColor = Color.white;
     public Color OriginalColor { get => originalColor; set => originalColor = value; }
@@ -85,10 +91,9 @@ public class NPC : MonoBehaviour, IHighlightable
 
 public enum NPCState
 {
-    Idle, 
-    Walking,
-    SittingIdle,
-    SittingTalking,
-    Talking, 
-    TPose
+    BOOL_IDLE,
+    BOOL_SITTING,
+    BOOL_WALKING,
+    BOOL_TALKING,
+    BOOL_TPOSE
 }

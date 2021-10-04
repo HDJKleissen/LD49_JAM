@@ -5,6 +5,7 @@ using UnityEngine;
 public class AnimationBug : Bug
 {
     public Animator animator;
+    
     public override void DoStart()
     {
     }

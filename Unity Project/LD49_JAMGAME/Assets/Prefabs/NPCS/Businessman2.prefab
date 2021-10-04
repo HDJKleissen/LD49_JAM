@@ -25,11 +25,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648516189222068259}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 8, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5013508710234133692}
-  m_RootOrder: 0
+  m_Father: {fileID: 2858341061869066594}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &2753670207053715051
 CapsuleCollider:
@@ -87,7 +87,8 @@ GameObject:
   - component: {fileID: 2858341061869066594}
   - component: {fileID: 2858341061869066595}
   - component: {fileID: 1303591109342008137}
-  m_Layer: 0
+  - component: {fileID: 1130667903}
+  m_Layer: 3
   m_Name: Businessman2
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -106,6 +107,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2858341061263301705}
+  - {fileID: 7359998698732893152}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -143,6 +145,30 @@ MonoBehaviour:
   ShortestTimeBetweenBarks: 15
   LongestTimeBetweenBarks: 25
   isBug: 0
+--- !u!114 &1130667903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2858341061869066596}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411c6b1e07f06704ba9e4928cdf641bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FixingParticlesLocation: {fileID: 5013508710234133692}
+  FixTimeCircleLocation: {fileID: 0}
+  scanTime: 0
+  isBugged: 0
+  isFixed: 0
+  MaxFixTime: 0
+  BugCollider: {fileID: 2753670207053715051}
+  NPC: {fileID: 2858341061869066595}
+  NPCAudio: {fileID: 1303591109342008137}
+  IncorrectBool: 0
+  CorrectBool: 0
+  AudioBugged: 0
 --- !u!95 &6371163439257583294
 Animator:
   serializedVersion: 3
