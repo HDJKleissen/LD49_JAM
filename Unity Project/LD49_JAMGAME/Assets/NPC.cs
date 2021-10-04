@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour, IHighlightable
 {
-    bool sitting, walking, talking, tPose;
+    [SerializeField] bool sitting, walking, talking, tPose;
     public Animator Animator;
     public Renderer[] Parts;
 
@@ -26,6 +26,7 @@ public class NPC : MonoBehaviour, IHighlightable
         {
             renderer.material.SetColor("_EmissionColor", highlightColor);
         }
+        SetAnimatorParams();
     }
 
     // Update is called once per frame
