@@ -9,6 +9,7 @@ public class Elevator : MonoBehaviour
     public float MoveSpeed;
 
     public ElevatorMusic elevatorMusic;
+    private FMOD.Studio.EventInstance rideSound;
 
     bool isOpen = false;
     bool isDown = false;
@@ -20,6 +21,7 @@ public class Elevator : MonoBehaviour
         {
             elevatorMusic = GetComponent<ElevatorMusic>();
         }
+        rideSound = FMODUnity.RuntimeManager.CreateInstance("event:/ElevatorRide");
     }
 
     // Update is called once per frame
@@ -111,11 +113,13 @@ public class Elevator : MonoBehaviour
             }
 
             // Start Elevator Rumble
+            rideSound.start();
 
             StartCoroutine(CoroutineHelper.DelaySeconds(() => MovingElevator.animator.SetTrigger("StopMoveElevator"), 5));
             StartCoroutine(CoroutineHelper.DelaySeconds(() =>
             {
                 // Stop Elevator Rumble
+                rideSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 MovingElevator.isDown = !MovingElevator.isDown;
                 MovingElevator.StopMoveDown();
                 MovingElevator.StopMoveUp();
@@ -126,6 +130,11 @@ public class Elevator : MonoBehaviour
             }, 10));
             StartCoroutine(CoroutineHelper.DelaySeconds(() => LinkedElevator.OpenDoors(), 11));
         }
+    }
+
+    private void OnDestroy()
+    {
+        rideSound.release();
     }
 }
 
