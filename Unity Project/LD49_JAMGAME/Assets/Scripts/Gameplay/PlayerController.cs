@@ -180,26 +180,47 @@ public class PlayerController : MonoBehaviour
 
         if (rayHitInteractable)
         {
-            Interactable interactableHit = hitInteractable.transform.GetComponent<Interactable>();
+            InteractableToBug interactableBugHit = hitInteractable.transform.GetComponent<InteractableToBug>();
 
-            if (interactableHit != null)
+            if (interactableBugHit != null)
             {
                 clearHighlight = false;
 
-                if (highlightedObject == null || highlightedObject != interactableHit as IHighlightable)
+                if (highlightedObject == null || highlightedObject != interactableBugHit as IHighlightable)
                 {
                     StopHighlight();
                     highlightedObject?.ToggleHighlight(false);
-                    highlightedObject = interactableHit;
+                    highlightedObject = interactableBugHit;
                     highlightedObject.ToggleHighlight(true);
+                }
+                if (Input.GetButtonDown("Use"))
+                {
+                    interactableBugHit.Interact();
+
+                }
+            }
+            else
+            {
+                Interactable interactableHit = hitInteractable.transform.GetComponent<Interactable>();
+                if(interactableHit != null)
+                {
+                    clearHighlight = false;
+
+                    if (highlightedObject == null || highlightedObject != interactableBugHit as IHighlightable)
+                    {
+                        StopHighlight();
+                        highlightedObject?.ToggleHighlight(false);
+                        highlightedObject = interactableHit;
+                        highlightedObject.ToggleHighlight(true);
+                    }
+
+                    if (Input.GetButtonDown("Use"))
+                    {
+                        interactableHit.Interact();
+                    }
                 }
             }
             
-            if (Input.GetButtonDown("Use"))
-            {
-                interactableHit.Interact();
-
-            }
         }
         if (rayHitOther && !rayHitInteractable && !rayHitBug)
         {
@@ -255,19 +276,21 @@ public class PlayerController : MonoBehaviour
                     }
 
                     StopHighlight();
-
-                    if(renderer.tag == "HasEmissionMap")
+                    if(renderer != null)
                     {
-                        prevEmissionTexture = renderer.materials[0].GetTexture("_EmissionMap");
-                        renderer.materials[0].SetTexture("_EmissionMap", null);
+                        if (renderer.tag == "HasEmissionMap")
+                        {
+                            prevEmissionTexture = renderer.materials[0].GetTexture("_EmissionMap");
+                            renderer.materials[0].SetTexture("_EmissionMap", null);
+                        }
+                        foreach (Material mat in renderer.materials)
+                        {
+                            mat.SetColor("_EmissionColor", Constants.HIGHLIGHT_COLOR);
+                            mat.EnableKeyword("_EMISSION");
+                        }
+                        highlightedNonBugNonInteractable = renderer;
+                        clearHighlight = false;
                     }
-                    foreach (Material mat in renderer.materials)
-                    {
-                        mat.SetColor("_EmissionColor", Constants.HIGHLIGHT_COLOR);
-                        mat.EnableKeyword("_EMISSION");
-                    }
-                    highlightedNonBugNonInteractable = renderer;
-                    clearHighlight = false;
                 }
             }
         }

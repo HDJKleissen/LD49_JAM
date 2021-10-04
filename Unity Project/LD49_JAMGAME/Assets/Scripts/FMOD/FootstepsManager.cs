@@ -8,7 +8,7 @@ public class FootstepsManager : MonoBehaviour
     [SerializeField] [FMODUnity.EventRef] private string JumpingEventPath;
     public string[] MaterialTypes;
 
-    [SerializeField] private float RayDistance = 1.2f;
+    [SerializeField] private float RayDistance = 0.1f;
     [SerializeField] private float StepDistance = 2.0f;
     private float StepRandom;
     private Vector3 PrevPos;
