@@ -40,7 +40,7 @@
 			<value>volume</value>
 		</property>
 		<property name="value">
-			<value>-12</value>
+			<value>-16</value>
 		</property>
 		<relationship name="automatableObject">
 			<destination>{4f839c8d-f9c3-4e8c-807a-19905b3a6e7b}</destination>
@@ -51,7 +51,7 @@
 			<value>decayTime</value>
 		</property>
 		<property name="value">
-			<value>1500</value>
+			<value>1400</value>
 		</property>
 		<relationship name="automatableObject">
 			<destination>{564a64df-fe59-453d-a569-f88b9ef4c107}</destination>
