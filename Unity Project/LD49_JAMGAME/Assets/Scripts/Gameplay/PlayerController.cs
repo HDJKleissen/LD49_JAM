@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
     // Pat's FMOD event
     private FMOD.Studio.EventInstance scanningSound;
 
+    Texture prevEmissionTexture;
+
     Dictionary<GameObject, Renderer> objectsAndRenderers = new Dictionary<GameObject, Renderer>();
 
     // Start is called before the first frame update
@@ -235,19 +237,35 @@ public class PlayerController : MonoBehaviour
                     }
                     if (highlightedNonBugNonInteractable != null && highlightedNonBugNonInteractable != renderer)
                     {
-                        if (highlightedNonBugNonInteractable.tag != "HasLight")
+                        if (highlightedNonBugNonInteractable.tag != "HasEmissionMap")
                         {
-                            highlightedNonBugNonInteractable.material.DisableKeyword("_EMISSION");
+                            foreach(Material mat in highlightedNonBugNonInteractable.materials)
+                            {
+                                mat.DisableKeyword("_EMISSION");
+                            }
                         }
                         else
                         {
-                            highlightedNonBugNonInteractable.material.SetColor("_EmissionColor", Color.white);
+                            foreach (Material mat in highlightedNonBugNonInteractable.materials)
+                            {
+                                mat.SetTexture("_EmissionMap", prevEmissionTexture);
+                                mat.SetColor("_EmissionColor", Color.white);
+                            }
                         }
                     }
 
                     StopHighlight();
-                    renderer.material.SetColor("_EmissionColor", Constants.HIGHLIGHT_COLOR);
-                    renderer.material.EnableKeyword("_EMISSION");
+
+                    if(renderer.tag == "HasEmissionMap")
+                    {
+                        prevEmissionTexture = renderer.materials[0].GetTexture("_EmissionMap");
+                        renderer.materials[0].SetTexture("_EmissionMap", null);
+                    }
+                    foreach (Material mat in renderer.materials)
+                    {
+                        mat.SetColor("_EmissionColor", Constants.HIGHLIGHT_COLOR);
+                        mat.EnableKeyword("_EMISSION");
+                    }
                     highlightedNonBugNonInteractable = renderer;
                     clearHighlight = false;
                 }
@@ -282,13 +300,20 @@ public class PlayerController : MonoBehaviour
     {
         if (highlightedNonBugNonInteractable != null)
         {
-            if (highlightedNonBugNonInteractable.tag != "HasLight")
+            if (highlightedNonBugNonInteractable.tag != "HasEmissionMap")
             {
-                highlightedNonBugNonInteractable.material.DisableKeyword("_EMISSION");
+                foreach (Material mat in highlightedNonBugNonInteractable.materials)
+                {
+                    mat.DisableKeyword("_EMISSION");
+                }
             }
             else
             {
-                highlightedNonBugNonInteractable.material.SetColor("_EmissionColor", Color.white);
+                foreach (Material mat in highlightedNonBugNonInteractable.materials)
+                {
+                    mat.SetColor("_EmissionColor", Color.white);
+                }
+                highlightedNonBugNonInteractable.materials[0].SetTexture("_EmissionMap", prevEmissionTexture);
             }
         }
         highlightedObject?.ToggleHighlight(false);

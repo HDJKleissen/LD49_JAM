@@ -33,12 +33,12 @@ public class Interactable : MonoBehaviour, IHighlightable
     {
         if (highlighting)
         {
-            ObjectRenderer.material.SetColor("_EmissionColor", highlightColor);
-            ObjectRenderer.material.EnableKeyword("_EMISSION");
+            ObjectRenderer.materials[0].SetColor("_EmissionColor", highlightColor);
+            ObjectRenderer.materials[0].EnableKeyword("_EMISSION");
         }
         else
         {
-            ObjectRenderer.material.DisableKeyword("_EMISSION");
+            ObjectRenderer.materials[0].DisableKeyword("_EMISSION");
         }
     }
 }
