@@ -32,6 +32,6 @@ public class ElevatorMusic : MonoBehaviour
 
     public void SetHouseMusic(bool isHouse)
     {
-        Music.setParameterByName("House", isHouse ? 1f : 0f)
+        Music.setParameterByName("House", isHouse ? 1f : 0f);
     }
 }
