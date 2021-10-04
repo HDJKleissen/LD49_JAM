@@ -53,7 +53,7 @@ public class BugShowCamera : MonoBehaviour
                 StartCoroutine(MoveOverSeconds(transform.position.z + 0.5f, originalScale, 0.2f));
             }
         }
-        if(screenPosition.x < 0 - Screen.width/3)
+        if(screenPosition.x < 0 - Screen.width/2)
         {
             Destroy(Camera.gameObject);
             Destroy(gameObject);

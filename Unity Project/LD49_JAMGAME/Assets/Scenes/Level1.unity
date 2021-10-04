@@ -20095,6 +20095,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8936367781010862720, guid: 80d428bf5af862b439fa2f025f51bc5f, type: 3}
   m_PrefabInstance: {fileID: 1056197542}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1056404891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 293275449, guid: c41e6207e4548674ab8844899a9a3ed6, type: 3}
+  m_PrefabInstance: {fileID: 2062657432}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1057087793
 GameObject:
   m_ObjectHideFlags: 0
@@ -26172,6 +26177,10 @@ PrefabInstance:
       propertyPath: EndScreenUI
       value: 
       objectReference: {fileID: 1830567651}
+    - target: {fileID: 4162941843657328132, guid: 38509b3d2fb53d24889a0a6b0cac80a7, type: 3}
+      propertyPath: EndButtonsPanel
+      value: 
+      objectReference: {fileID: 1056404891}
     - target: {fileID: 4162941843657328133, guid: 38509b3d2fb53d24889a0a6b0cac80a7, type: 3}
       propertyPath: m_Name
       value: EndingController
