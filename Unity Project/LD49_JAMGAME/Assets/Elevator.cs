@@ -14,6 +14,8 @@ public class Elevator : MonoBehaviour
     bool isOpen = false;
     bool isDown = false;
     bool movingDown = false, movingUp = false;
+
+    public bool IsBottomElevator = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -77,7 +79,14 @@ public class Elevator : MonoBehaviour
             LinkedElevator.isOpen = true;
             LinkedElevator.animator.SetTrigger("OpenDoors");
         }
-        elevatorMusic.SetDoorOpen(isOpen);
+        if (!IsBottomElevator)
+        {
+            elevatorMusic.SetDoorOpen(isOpen);
+        }
+        else
+        {
+            elevatorMusic.SetDoorOpen(true);
+        }
     }
 
     public void CloseDoors()
@@ -90,7 +99,14 @@ public class Elevator : MonoBehaviour
             LinkedElevator.isOpen = false;
             LinkedElevator.animator.SetTrigger("CloseDoors");
         }
-        elevatorMusic.SetDoorOpen(isOpen);
+        if (!IsBottomElevator)
+        {
+            elevatorMusic.SetDoorOpen(isOpen);
+        }
+        else
+        {
+            elevatorMusic.SetDoorOpen(true);
+        }
     }
 
     public void MoveElevator()

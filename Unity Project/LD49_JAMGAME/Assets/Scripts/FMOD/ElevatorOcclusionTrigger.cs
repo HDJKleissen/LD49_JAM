@@ -18,12 +18,22 @@ public class ElevatorOcclusionTrigger : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (other.gameObject == Player && IsBottomElevator)
+        {
+            elevatorMusic.SetDoorOpen(true);
+
+        }
         if (other.gameObject == Player && !IsBottomElevator)
             elevatorMusic.SetDoorOpen(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if(other.gameObject == Player && IsBottomElevator)
+        {
+
+            elevatorMusic.SetDoorOpen(true);
+        }
         if (other.gameObject == Player && !IsBottomElevator)
             elevatorMusic.SetDoorOpen(false);
     }
