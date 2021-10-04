@@ -5,7 +5,7 @@
 			<value>ElevatorRide</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{2586dc9e-ad3a-4230-82d7-bb69c8134bed}</destination>
@@ -144,7 +144,7 @@
 			<value>0</value>
 		</property>
 		<property name="releaseTime">
-			<value>1400</value>
+			<value>820</value>
 		</property>
 		<property name="finalValue">
 			<value>-80</value>
@@ -153,7 +153,6 @@
 	<object class="MixerBusEffectChain" id="{b321241f-ffb6-4940-b4ba-903071f90fd5}">
 		<relationship name="effects">
 			<destination>{f73b172f-a066-4632-b341-d27d92f869b9}</destination>
-			<destination>{12d170c7-c940-42b9-952d-c32620b21e51}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{6c39baf7-31c2-4908-b2e3-60be739fc3a0}" />
@@ -179,6 +178,5 @@
 	</object>
 	<object class="MixerBusPanner" id="{608e2df1-f22a-430b-bcf4-53f634ac17b4}" />
 	<object class="MixerBusFader" id="{f73b172f-a066-4632-b341-d27d92f869b9}" />
-	<object class="SpatialiserEffect" id="{12d170c7-c940-42b9-952d-c32620b21e51}" />
 	<object class="MixerBusFader" id="{6f0befe1-6bea-41fc-b865-834065744227}" />
 </objects>
