@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1373880696908637776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552381987032891037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/Computer
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &466762085056656430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57,7 +80,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6652482335083911891, guid: 03bc9bdefeae9794ea9d94f3aec15bd3, type: 3}
       propertyPath: m_Name
-      value: DeskChairLampPC
+      value: DeskChairLampPC Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03bc9bdefeae9794ea9d94f3aec15bd3, type: 3}
@@ -135,6 +158,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f27efc9e6565374d9fe344a830e9120, type: 3}
+--- !u!1 &552381987032891037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 130659198818740222, guid: 2f27efc9e6565374d9fe344a830e9120, type: 3}
+  m_PrefabInstance: {fileID: 466762085440756067}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &466762085558834144
 PrefabInstance:
   m_ObjectHideFlags: 0
