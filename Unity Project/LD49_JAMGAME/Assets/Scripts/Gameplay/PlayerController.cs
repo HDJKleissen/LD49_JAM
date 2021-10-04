@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         scanningSound = FMODUnity.RuntimeManager.CreateInstance("event:/Fixing_Bug");
+        GameManager.Instance.ShowHint("Note; you came in through the elevator. The devs haven't had time to implement the start yet. Sorry.", 3);
     }
 
 
