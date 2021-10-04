@@ -4353,10 +4353,10 @@ RectTransform:
   m_Father: {fileID: 1443481323}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 777.5362, y: -50}
-  m_SizeDelta: {x: 58.5, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 58.5, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &173467617
 MonoBehaviour:
@@ -7617,7 +7617,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -10979,10 +10979,10 @@ RectTransform:
   m_Father: {fileID: 420922813650641157}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1631.6614, y: -50}
-  m_SizeDelta: {x: 1329.4, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1329.4, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &540710854
 MonoBehaviour:
@@ -21440,7 +21440,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -29809,10 +29809,10 @@ RectTransform:
   m_Father: {fileID: 1443481323}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 688.8531, y: -50}
-  m_SizeDelta: {x: 1377.7062, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1377.7062, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1422617240
 MonoBehaviour:
@@ -30118,10 +30118,10 @@ RectTransform:
   m_Father: {fileID: 420922813650641157}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 482.99033, y: -50}
-  m_SizeDelta: {x: 765.98065, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 765.98065, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1443481324
 MonoBehaviour:
@@ -32657,10 +32657,10 @@ RectTransform:
   m_Father: {fileID: 2135467584}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 782.1862, y: -50}
-  m_SizeDelta: {x: 67.8, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 67.8, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1590152727
 MonoBehaviour:
@@ -40596,10 +40596,10 @@ RectTransform:
   m_Father: {fileID: 2135467584}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 688.8531, y: -50}
-  m_SizeDelta: {x: 1377.7062, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1377.7062, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1961990880
 MonoBehaviour:
@@ -44545,10 +44545,10 @@ RectTransform:
   m_Father: {fileID: 420922813650641157}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 916.47095, y: -50}
-  m_SizeDelta: {x: 765.98065, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 765.98065, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2135467585
 MonoBehaviour:
@@ -48066,7 +48066,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1001 &3233796944699337358
 PrefabInstance:
   m_ObjectHideFlags: 0
