@@ -11,28 +11,30 @@ public class PAAnnouncements : MonoBehaviour
     FMOD.Studio.EventInstance NormalLine;
     FMOD.Studio.EventInstance BugLine;
 
+    public Transform speakerPosition;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        speakerPosition = transform;
         NormalLine = FMODUnity.RuntimeManager.CreateInstance("event:/PA");
         BugLine = FMODUnity.RuntimeManager.CreateInstance("event:/PA_Bug");
         Invoke("PlayPALine", TimeBeforeFirstAnnouncement);
     }
-     
 
     void PlayPALine()
     {
         if(isBug)
         {
-            BugLine.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+            BugLine.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(speakerPosition));
             BugLine.start();
 
             //if we don't need to update location could use FMODUnity.RuntimeManager.PlayOneShotAttached("event:/PA_Bug", gameObject);
         }
         else
         {
-            NormalLine.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+            NormalLine.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(speakerPosition));
             NormalLine.start();
 
             //if we don't need to update location could use FMODUnity.RuntimeManager.PlayOneShotAttached("event:/PA", gameObject);
@@ -45,5 +47,11 @@ public class PAAnnouncements : MonoBehaviour
     {
         BugLine.release();
         NormalLine.release();
+    }
+
+    public void UpdateSpeakerPosition()
+    {
+        BugLine.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(speakerPosition));
+        NormalLine.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(speakerPosition));
     }
 }

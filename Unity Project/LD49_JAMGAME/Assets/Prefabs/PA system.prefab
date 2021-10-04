@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1260321096250901097}
   - component: {fileID: 3934307784948430499}
   - component: {fileID: 265199841}
+  - component: {fileID: 3036580488860845833}
   m_Layer: 0
   m_Name: PA system
   m_TagString: Untagged
@@ -97,3 +98,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4666265689402840855, guid: a0c7e5177962c90438adb0d92511275b, type: 3}
+--- !u!114 &3036580488860845833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3285802975964436342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24265c7880d3c4b45a68dcb6dd18e8bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeBeforeFirstAnnouncement: 6
+  ShortestTimeBetweenAnnouncements: 25
+  LongestTimeBetweenAnnouncements: 35
+  isBug: 0
