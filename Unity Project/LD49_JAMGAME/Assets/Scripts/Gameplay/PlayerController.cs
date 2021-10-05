@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
     {
         bool clearHighlight = true;
         RaycastHit hitInteractable, hitBug, hitOther;
-        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         bool rayHitInteractable = Physics.Raycast(ray, out hitInteractable, interactRange, interactableLayer);
         bool rayHitBug = Physics.Raycast(ray, out hitBug, interactRange, pointableLayer);
         bool rayHitOther = Physics.Raycast(ray, out hitOther, interactRange);
